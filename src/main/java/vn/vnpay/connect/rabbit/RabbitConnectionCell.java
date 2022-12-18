@@ -16,6 +16,7 @@ import vn.vnpay.utils.ExecutorSingleton;
 import vn.vnpay.utils.GsonSingleton;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.concurrent.*;
 import org.slf4j.Logger;
@@ -131,7 +132,7 @@ public class RabbitConnectionCell {
                 // send message
                 String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
                 AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder().correlationId(delivery.getProperties().getCorrelationId()).build();
-                channel.basicPublish("", delivery.getProperties().getReplyTo(), replyProps, message.getBytes("UTF-8"));
+                channel.basicPublish("", delivery.getProperties().getReplyTo(), replyProps, message.getBytes(StandardCharsets.UTF_8));
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
             }
             log.info("rabbit finish receiving data");

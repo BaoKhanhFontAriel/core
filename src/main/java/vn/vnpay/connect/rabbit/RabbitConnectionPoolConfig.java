@@ -11,6 +11,7 @@ public class RabbitConnectionPoolConfig {
     public static final String EXCHANGE_NAME = AppConfigSingleton.getInstance().getStringProperty("rabbitmq.exchange_name");;
     public static final String EXCHANGE_TYPE =AppConfigSingleton.getInstance().getStringProperty("rabbitmq.exchange_type");;
     public static final String ROUTING_KEY = AppConfigSingleton.getInstance().getStringProperty("rabbitmq.routing_key");;
-    public static final String URL = AppConfigSingleton.getInstance().getStringProperty("rabbitmq.url");
+//    public static final String URL = AppConfigSingleton.getInstance().getStringProperty("rabbitmq.url");
+    public static final String HOST = AppConfigSingleton.getInstance().getStringProperty("rabbitmq.host");
     public static final long TIME_OUT = AppConfigSingleton.getInstance().getIntProperty("rabbitmq.time_out");
 }

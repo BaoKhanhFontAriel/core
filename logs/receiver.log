@@ -1,26 +1,6 @@
-1650 [main] INFO  vn.vnpay.utils.ExecutorSingleton - create new ExecuterSingleton...
-1704 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Create Rabbit Connection pool........................ 
-1853 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-1962 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-1985 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-2013 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-2023 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-2032 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-2050 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-2109 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-2148 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-2197 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-2228 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Start Rabbit Connection pool in : 523 ms
-2228 [main] INFO  v.v.c.reddis.RedisConnectionPool - Create Reddis Connection pool........................ 
-10318 [main] INFO  v.v.c.reddis.RedisConnectionPool - Start Rabbit Connection pool in : 8090 ms
-10318 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - begin getting rabbit connection!
-10318 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - finish getting rabbit connection, 
-10318 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - set relax time: {0}
-10328 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - begin releasing connection RabbitConnectionCell(queueName=amq.gen-tg9bR15FME63Le-nEUdBSg, exchangeName=null, exchangeType=null, routingKey=sender_info, relaxTime=1671371067379, timeOut=0, conn=amqp://guest@0:0:0:0:0:0:0:1:5672/, channel=AMQChannel(amqp://guest@0:0:0:0:0:0:0:1:5672/,1))
-10329 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - successfully release connection RabbitConnectionCell(queueName=amq.gen-tg9bR15FME63Le-nEUdBSg, exchangeName=null, exchangeType=null, routingKey=sender_info, relaxTime=1671371067379, timeOut=0, conn=amqp://guest@0:0:0:0:0:0:0:1:5672/, channel=AMQChannel(amqp://guest@0:0:0:0:0:0:0:1:5672/,1))
-29687 [pool-1-thread-32] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"Xw6mUdRiah67ytEfQcQ4byb_KJzwrhra","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
-29697 [pool-1-thread-32] INFO  vn.vnpay.utils.ExecutorSingleton - create new ExecuterSingleton...
-29724 [pool-14-thread-2] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=Xw6mUdRiah67ytEfQcQ4byb_KJzwrhra, data={
+1102818 [pool-2-thread-32] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"hT22BdgcZdXHr0d6Vy8z_8cirM3yn_0a","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+1102851 [pool-2-thread-32] INFO  vn.vnpay.utils.ExecutorSingleton - create new ExecutorServiceSingleton...
+1103000 [pool-15-thread-2] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=hT22BdgcZdXHr0d6Vy8z_8cirM3yn_0a, data={
  "userName": "NGUY T T HA",
  "customerName": "NGUY T T HA",
  "tranxId": "700056569",
@@ -71,266 +51,521 @@
  "typeSource": "02",
  "bankCard": "02"
 })
-30045 [pool-14-thread-3] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
-30062 [pool-14-thread-1] INFO  vn.vnpay.runnable.LongRunningTask - thread is interrupted
-30062 [pool-14-thread-3] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
-30065 [pool-1-thread-32] ERROR v.v.c.rabbit.RabbitConnectionCell - Time execution in core is over 1 minute 
-java.util.concurrent.TimeoutException: null
-	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
-	at vn.vnpay.connect.rabbit.RabbitConnectionCell.lambda$receiveAndSend$0(RabbitConnectionCell.java:97)
-	at com.rabbitmq.client.impl.recovery.AutorecoveringChannel$2.handleDelivery(AutorecoveringChannel.java:588)
-	at com.rabbitmq.client.impl.ConsumerDispatcher$5.run(ConsumerDispatcher.java:149)
-	at com.rabbitmq.client.impl.ConsumerWorkService$WorkPoolRunnable.run(ConsumerWorkService.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at java.lang.Thread.run(Thread.java:750)
-30071 [pool-1-thread-32] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
-30307 [pool-14-thread-2] INFO  v.v.c.reddis.RedisConnectionPool - Connection : RedisConnectionCell(url=http://localhost:6379, relaxTime=1671371086786, timeOut=0, jedis=Jedis{Connection{DefaultJedisSocketFactory{localhost:6379}}})
-java.lang.InterruptedException: null
-	at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireInterruptibly(AbstractQueuedSynchronizer.java:1220)
-	at java.util.concurrent.locks.ReentrantLock.lockInterruptibly(ReentrantLock.java:335)
-	at java.util.concurrent.LinkedBlockingQueue.put(LinkedBlockingQueue.java:339)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.releaseConnection(RedisConnectionPool.java:113)
-	at vn.vnpay.runnable.PushToRedisCallable.pushToRedis(PushToRedisCallable.java:38)
-	at vn.vnpay.runnable.PushToRedisCallable.call(PushToRedisCallable.java:49)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at java.lang.Thread.run(Thread.java:750)
-30307 [pool-14-thread-2] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 582 ms
-797  [main] INFO  vn.vnpay.utils.ExecutorSingleton - create new ExecutorServiceSingleton...
-884  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Create Rabbit Connection pool........................ 
-884  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Start Rabbit Connection pool in : 0 ms
-886  [main] INFO  v.v.c.reddis.RedisConnectionPool - Create Reddis Connection pool........................ 
-886  [main] INFO  v.v.c.reddis.RedisConnectionPool - Start Rabbit Connection pool in : 0 ms
-886  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - begin getting rabbit connection!
-473  [main] INFO  vn.vnpay.utils.ExecutorSingleton - create new ExecutorServiceSingleton...
-534  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Create Rabbit Connection pool........................ 
-609  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-809  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-844  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-863  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-892  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-926  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-949  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-976  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-994  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-1068 [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-1091 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Start Rabbit Connection pool in : 557 ms
-1092 [main] INFO  v.v.c.reddis.RedisConnectionPool - Create Reddis Connection pool........................ 
-1139 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1140 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1141 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1141 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1141 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1141 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1141 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1142 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1142 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1142 [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-1142 [main] INFO  v.v.c.reddis.RedisConnectionPool - Start Rabbit Connection pool in : 50 ms
-1142 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - begin getting rabbit connection!
-1142 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - finish getting rabbit connection, 
-1142 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - set relax time: 1671377996608
-1146 [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-1146 [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-1146 [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-1146 [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-1147 [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-489  [main] INFO  vn.vnpay.utils.ExecutorSingleton - create new ExecutorServiceSingleton...
-547  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Create Rabbit Connection pool........................ 
-598  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-677  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-689  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-700  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-720  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-734  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-753  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-761  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-784  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-792  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
-808  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Start Rabbit Connection pool in : 260 ms
-815  [main] INFO  v.v.c.reddis.RedisConnectionPool - Create Reddis Connection pool........................ 
-918  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-919  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-920  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-920  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-921  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-921  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-921  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-921  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-922  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-922  [main] ERROR v.v.c.reddis.RedisConnectionCell - connect unsuccessful to redis: 
-redis.clients.jedis.exceptions.InvalidURIException: Cannot open Redis connection due invalid URI "localhost:6379".
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:146)
-	at redis.clients.jedis.Jedis.<init>(Jedis.java:59)
-	at vn.vnpay.connect.reddis.RedisConnectionCell.<init>(RedisConnectionCell.java:27)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.start(RedisConnectionPool.java:67)
-	at vn.vnpay.main.MainService.main(MainService.java:31)
-922  [main] INFO  v.v.c.reddis.RedisConnectionPool - Start Rabbit Connection pool in : 107 ms
-922  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - begin getting rabbit connection!
-922  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - finish getting rabbit connection, 
-923  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - set relax time: 1671378276550
-927  [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-934  [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-935  [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-935  [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-936  [Thread-3] WARN  v.v.c.reddis.RedisConnectionCell - connection is closed: {0}
-java.lang.NullPointerException: null
-	at vn.vnpay.connect.reddis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.connect.reddis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
-	at java.lang.Thread.run(Thread.java:750)
-938  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - begin releasing connection RabbitConnectionCell(queueName=amq.gen-a26i0Fth8yDREytwjmFOCg, exchangeName=null, exchangeType=null, routingKey=sender_info, relaxTime=1671378276550, timeOut=0, conn=amqp://guest@0:0:0:0:0:0:0:1:5672/, channel=AMQChannel(amqp://guest@0:0:0:0:0:0:0:1:5672/,1))
-938  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - successfully release connection RabbitConnectionCell(queueName=amq.gen-a26i0Fth8yDREytwjmFOCg, exchangeName=null, exchangeType=null, routingKey=sender_info, relaxTime=1671378276550, timeOut=0, conn=amqp://guest@0:0:0:0:0:0:0:1:5672/, channel=AMQChannel(amqp://guest@0:0:0:0:0:0:0:1:5672/,1))
+1103079 [pool-15-thread-3] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+1103094 [pool-15-thread-3] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+1103094 [pool-15-thread-3] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+1103095 [pool-15-thread-3] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 15 ms
+1103118 [pool-15-thread-3] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+1103461 [pool-15-thread-2] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 460 ms
+1103461 [pool-15-thread-3] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+1103461 [pool-15-thread-1] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+1103467 [pool-2-thread-32] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
+396  [main] INFO  vn.vnpay.utils.ExecutorSingleton - create new ExecutorServiceSingleton...
+454  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Create Rabbit Connection pool........................ 
+490  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+592  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+610  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+625  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+656  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+666  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+676  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+685  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+699  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+712  [main] DEBUG c.r.client.impl.ConsumerWorkService - Creating executor service with 4 thread(s) for consumer work service
+722  [main] INFO  v.v.c.rabbit.RabbitConnectionPool - Start Rabbit Connection pool in : 267 ms
+723  [main] INFO  v.v.c.reddis.RedisConnectionPool - Create Reddis Connection pool........................ 
+8829 [main] INFO  v.v.c.reddis.RedisConnectionPool - Start Rabbit Connection pool in : 8106 ms
+8830 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - begin getting rabbit connection!
+8830 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - finish getting rabbit connection, 
+8830 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - set relax time: 1671383470361
+8837 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - begin releasing connection RabbitConnectionCell(queueName=amq.gen-64sd0TJMIwWXuB_1lTEgLA, exchangeName=null, exchangeType=null, routingKey=sender_info, relaxTime=1671383470361, timeOut=0, conn=amqp://guest@0:0:0:0:0:0:0:1:5672/, channel=AMQChannel(amqp://guest@0:0:0:0:0:0:0:1:5672/,1))
+8837 [main] INFO  v.v.c.rabbit.RabbitConnectionPool - successfully release connection RabbitConnectionCell(queueName=amq.gen-64sd0TJMIwWXuB_1lTEgLA, exchangeName=null, exchangeType=null, routingKey=sender_info, relaxTime=1671383470361, timeOut=0, conn=amqp://guest@0:0:0:0:0:0:0:1:5672/, channel=AMQChannel(amqp://guest@0:0:0:0:0:0:0:1:5672/,1))
+245746 [pool-2-thread-32] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"ZaGXsxmtha9psD7y-L7KFJIIJO6WST6i","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+245756 [pool-2-thread-32] INFO  vn.vnpay.utils.ExecutorSingleton - create new ExecutorServiceSingleton...
+245766 [pool-14-thread-1] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=ZaGXsxmtha9psD7y-L7KFJIIJO6WST6i, data={
+ "userName": "NGUY T T HA",
+ "customerName": "NGUY T T HA",
+ "tranxId": "700056569",
+ "mobileNo": "0336371711",
+ "accountNo": "4129770000000139",
+ "cusName": "NGUY T T HA",
+ "invoiceNo": "INV-E3R487X8CYUQVFB4",
+ "amount": 200000,
+ "status": "3",
+ "rescode": "00",
+ "bankCode": "970436",
+ "tranxNote": "Tru tien thanh cong, so trace 028977",
+ "tranxDate": "20211012171434",
+ "tipAndFee": "0",
+ "type": "2",
+ "item": [
+  {
+   "note": "",
+   "quantity": "1",
+   "qrInfor": "0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9"
+  }
+ ],
+ "qrInfo": "{\"version\":\"5.2.3\",\"PM\":\"Pixel 2 XL\",\"OV\":\"11\",\"PS\":\"IS_SAFE\",\"DT\":\"ANDROID\",\"IMEI\":\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\"}",
+ "orderCode": "700056569",
+ "quantity": "1",
+ "checkSum": "018bdd0b131b6f623bbff42c436b23dd",
+ "qrVersion": "2",
+ "mobile": "0336371711",
+ "respCode": "00",
+ "respDesc": "Tru tien thanh cong, so trace 028977",
+ "traceTransfer": "028977",
+ "messageType": "1",
+ "debitAmount": "200000.0",
+ "payDate": "20211012171434",
+ "realAmount": "200000.0",
+ "promotionCode": "",
+ "Url": "http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard",
+ "mobileId": "111001655",
+ "clientId": "210012299",
+ "device": "Pixel 2 XL",
+ "ipAddress": "10.22.7.11",
+ "imei": "###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a",
+ "totalAmount": "200000.0",
+ "feeAmount": "0",
+ "pcTime": "171432",
+ "tellerId": "5078",
+ "tellerBranch": "06800",
+ "typeSource": "02",
+ "bankCard": "02"
+})
+245767 [pool-14-thread-3] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+245829 [pool-14-thread-4] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+245845 [pool-14-thread-4] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+245845 [pool-14-thread-4] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+245845 [pool-14-thread-4] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 16 ms
+246031 [pool-14-thread-1] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 265 ms
+246035 [pool-14-thread-3] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+246036 [pool-14-thread-2] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+246044 [pool-2-thread-32] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
+248619 [pool-2-thread-33] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"-0E7BLYU8f354RgVMXd81DLqWXinMIPd","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+248620 [pool-14-thread-1] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=-0E7BLYU8f354RgVMXd81DLqWXinMIPd, data={
+ "userName": "NGUY T T HA",
+ "customerName": "NGUY T T HA",
+ "tranxId": "700056569",
+ "mobileNo": "0336371711",
+ "accountNo": "4129770000000139",
+ "cusName": "NGUY T T HA",
+ "invoiceNo": "INV-E3R487X8CYUQVFB4",
+ "amount": 200000,
+ "status": "3",
+ "rescode": "00",
+ "bankCode": "970436",
+ "tranxNote": "Tru tien thanh cong, so trace 028977",
+ "tranxDate": "20211012171434",
+ "tipAndFee": "0",
+ "type": "2",
+ "item": [
+  {
+   "note": "",
+   "quantity": "1",
+   "qrInfor": "0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9"
+  }
+ ],
+ "qrInfo": "{\"version\":\"5.2.3\",\"PM\":\"Pixel 2 XL\",\"OV\":\"11\",\"PS\":\"IS_SAFE\",\"DT\":\"ANDROID\",\"IMEI\":\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\"}",
+ "orderCode": "700056569",
+ "quantity": "1",
+ "checkSum": "018bdd0b131b6f623bbff42c436b23dd",
+ "qrVersion": "2",
+ "mobile": "0336371711",
+ "respCode": "00",
+ "respDesc": "Tru tien thanh cong, so trace 028977",
+ "traceTransfer": "028977",
+ "messageType": "1",
+ "debitAmount": "200000.0",
+ "payDate": "20211012171434",
+ "realAmount": "200000.0",
+ "promotionCode": "",
+ "Url": "http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard",
+ "mobileId": "111001655",
+ "clientId": "210012299",
+ "device": "Pixel 2 XL",
+ "ipAddress": "10.22.7.11",
+ "imei": "###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a",
+ "totalAmount": "200000.0",
+ "feeAmount": "0",
+ "pcTime": "171432",
+ "tellerId": "5078",
+ "tellerBranch": "06800",
+ "typeSource": "02",
+ "bankCard": "02"
+})
+248621 [pool-14-thread-3] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+248666 [pool-14-thread-1] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 46 ms
+248666 [pool-14-thread-1] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+248667 [pool-14-thread-1] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+248667 [pool-14-thread-1] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+248667 [pool-14-thread-1] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 1 ms
+248670 [pool-14-thread-3] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+248673 [pool-14-thread-4] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+248674 [pool-2-thread-33] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
+250444 [pool-2-thread-34] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"HVAyHYcrt-Z77pmehNg4RHNKNlG7i7uK","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+250445 [pool-14-thread-6] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=HVAyHYcrt-Z77pmehNg4RHNKNlG7i7uK, data={
+ "userName": "NGUY T T HA",
+ "customerName": "NGUY T T HA",
+ "tranxId": "700056569",
+ "mobileNo": "0336371711",
+ "accountNo": "4129770000000139",
+ "cusName": "NGUY T T HA",
+ "invoiceNo": "INV-E3R487X8CYUQVFB4",
+ "amount": 200000,
+ "status": "3",
+ "rescode": "00",
+ "bankCode": "970436",
+ "tranxNote": "Tru tien thanh cong, so trace 028977",
+ "tranxDate": "20211012171434",
+ "tipAndFee": "0",
+ "type": "2",
+ "item": [
+  {
+   "note": "",
+   "quantity": "1",
+   "qrInfor": "0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9"
+  }
+ ],
+ "qrInfo": "{\"version\":\"5.2.3\",\"PM\":\"Pixel 2 XL\",\"OV\":\"11\",\"PS\":\"IS_SAFE\",\"DT\":\"ANDROID\",\"IMEI\":\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\"}",
+ "orderCode": "700056569",
+ "quantity": "1",
+ "checkSum": "018bdd0b131b6f623bbff42c436b23dd",
+ "qrVersion": "2",
+ "mobile": "0336371711",
+ "respCode": "00",
+ "respDesc": "Tru tien thanh cong, so trace 028977",
+ "traceTransfer": "028977",
+ "messageType": "1",
+ "debitAmount": "200000.0",
+ "payDate": "20211012171434",
+ "realAmount": "200000.0",
+ "promotionCode": "",
+ "Url": "http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard",
+ "mobileId": "111001655",
+ "clientId": "210012299",
+ "device": "Pixel 2 XL",
+ "ipAddress": "10.22.7.11",
+ "imei": "###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a",
+ "totalAmount": "200000.0",
+ "feeAmount": "0",
+ "pcTime": "171432",
+ "tellerId": "5078",
+ "tellerBranch": "06800",
+ "typeSource": "02",
+ "bankCard": "02"
+})
+250446 [pool-14-thread-2] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+250483 [pool-14-thread-9] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+250483 [pool-14-thread-9] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+250483 [pool-14-thread-9] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+250483 [pool-14-thread-9] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 0 ms
+250486 [pool-14-thread-6] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 41 ms
+250486 [pool-14-thread-2] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+250487 [pool-14-thread-7] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+250487 [pool-2-thread-34] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
+251716 [pool-2-thread-31] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"BaQr46wHMZ_PsGj6qY0Ev-tNwSyEGXZe","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+251716 [pool-14-thread-8] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=BaQr46wHMZ_PsGj6qY0Ev-tNwSyEGXZe, data={
+ "userName": "NGUY T T HA",
+ "customerName": "NGUY T T HA",
+ "tranxId": "700056569",
+ "mobileNo": "0336371711",
+ "accountNo": "4129770000000139",
+ "cusName": "NGUY T T HA",
+ "invoiceNo": "INV-E3R487X8CYUQVFB4",
+ "amount": 200000,
+ "status": "3",
+ "rescode": "00",
+ "bankCode": "970436",
+ "tranxNote": "Tru tien thanh cong, so trace 028977",
+ "tranxDate": "20211012171434",
+ "tipAndFee": "0",
+ "type": "2",
+ "item": [
+  {
+   "note": "",
+   "quantity": "1",
+   "qrInfor": "0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9"
+  }
+ ],
+ "qrInfo": "{\"version\":\"5.2.3\",\"PM\":\"Pixel 2 XL\",\"OV\":\"11\",\"PS\":\"IS_SAFE\",\"DT\":\"ANDROID\",\"IMEI\":\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\"}",
+ "orderCode": "700056569",
+ "quantity": "1",
+ "checkSum": "018bdd0b131b6f623bbff42c436b23dd",
+ "qrVersion": "2",
+ "mobile": "0336371711",
+ "respCode": "00",
+ "respDesc": "Tru tien thanh cong, so trace 028977",
+ "traceTransfer": "028977",
+ "messageType": "1",
+ "debitAmount": "200000.0",
+ "payDate": "20211012171434",
+ "realAmount": "200000.0",
+ "promotionCode": "",
+ "Url": "http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard",
+ "mobileId": "111001655",
+ "clientId": "210012299",
+ "device": "Pixel 2 XL",
+ "ipAddress": "10.22.7.11",
+ "imei": "###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a",
+ "totalAmount": "200000.0",
+ "feeAmount": "0",
+ "pcTime": "171432",
+ "tellerId": "5078",
+ "tellerBranch": "06800",
+ "typeSource": "02",
+ "bankCard": "02"
+})
+251717 [pool-14-thread-4] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+251751 [pool-14-thread-10] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+251754 [pool-14-thread-10] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+251754 [pool-14-thread-10] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+251754 [pool-14-thread-10] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 2 ms
+251787 [pool-14-thread-8] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 71 ms
+251787 [pool-14-thread-4] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+251787 [pool-14-thread-3] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+251788 [pool-2-thread-31] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
+253032 [pool-2-thread-32] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"wJSR8aUN8PIpdvD5gYTt4RWZGomcJafe","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+253032 [pool-14-thread-9] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+253032 [pool-14-thread-1] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=wJSR8aUN8PIpdvD5gYTt4RWZGomcJafe, data={
+ "userName": "NGUY T T HA",
+ "customerName": "NGUY T T HA",
+ "tranxId": "700056569",
+ "mobileNo": "0336371711",
+ "accountNo": "4129770000000139",
+ "cusName": "NGUY T T HA",
+ "invoiceNo": "INV-E3R487X8CYUQVFB4",
+ "amount": 200000,
+ "status": "3",
+ "rescode": "00",
+ "bankCode": "970436",
+ "tranxNote": "Tru tien thanh cong, so trace 028977",
+ "tranxDate": "20211012171434",
+ "tipAndFee": "0",
+ "type": "2",
+ "item": [
+  {
+   "note": "",
+   "quantity": "1",
+   "qrInfor": "0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9"
+  }
+ ],
+ "qrInfo": "{\"version\":\"5.2.3\",\"PM\":\"Pixel 2 XL\",\"OV\":\"11\",\"PS\":\"IS_SAFE\",\"DT\":\"ANDROID\",\"IMEI\":\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\"}",
+ "orderCode": "700056569",
+ "quantity": "1",
+ "checkSum": "018bdd0b131b6f623bbff42c436b23dd",
+ "qrVersion": "2",
+ "mobile": "0336371711",
+ "respCode": "00",
+ "respDesc": "Tru tien thanh cong, so trace 028977",
+ "traceTransfer": "028977",
+ "messageType": "1",
+ "debitAmount": "200000.0",
+ "payDate": "20211012171434",
+ "realAmount": "200000.0",
+ "promotionCode": "",
+ "Url": "http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard",
+ "mobileId": "111001655",
+ "clientId": "210012299",
+ "device": "Pixel 2 XL",
+ "ipAddress": "10.22.7.11",
+ "imei": "###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a",
+ "totalAmount": "200000.0",
+ "feeAmount": "0",
+ "pcTime": "171432",
+ "tellerId": "5078",
+ "tellerBranch": "06800",
+ "typeSource": "02",
+ "bankCard": "02"
+})
+253046 [pool-14-thread-1] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 14 ms
+253086 [pool-14-thread-6] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+253087 [pool-14-thread-6] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+253087 [pool-14-thread-6] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+253087 [pool-14-thread-6] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 1 ms
+253087 [pool-14-thread-9] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+253087 [pool-14-thread-5] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+253087 [pool-2-thread-32] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
+254433 [pool-2-thread-33] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"7NzGUGatjmc190UQYtTkYDer7aeniYCb","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+254434 [pool-14-thread-7] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=7NzGUGatjmc190UQYtTkYDer7aeniYCb, data={
+ "userName": "NGUY T T HA",
+ "customerName": "NGUY T T HA",
+ "tranxId": "700056569",
+ "mobileNo": "0336371711",
+ "accountNo": "4129770000000139",
+ "cusName": "NGUY T T HA",
+ "invoiceNo": "INV-E3R487X8CYUQVFB4",
+ "amount": 200000,
+ "status": "3",
+ "rescode": "00",
+ "bankCode": "970436",
+ "tranxNote": "Tru tien thanh cong, so trace 028977",
+ "tranxDate": "20211012171434",
+ "tipAndFee": "0",
+ "type": "2",
+ "item": [
+  {
+   "note": "",
+   "quantity": "1",
+   "qrInfor": "0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9"
+  }
+ ],
+ "qrInfo": "{\"version\":\"5.2.3\",\"PM\":\"Pixel 2 XL\",\"OV\":\"11\",\"PS\":\"IS_SAFE\",\"DT\":\"ANDROID\",\"IMEI\":\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\"}",
+ "orderCode": "700056569",
+ "quantity": "1",
+ "checkSum": "018bdd0b131b6f623bbff42c436b23dd",
+ "qrVersion": "2",
+ "mobile": "0336371711",
+ "respCode": "00",
+ "respDesc": "Tru tien thanh cong, so trace 028977",
+ "traceTransfer": "028977",
+ "messageType": "1",
+ "debitAmount": "200000.0",
+ "payDate": "20211012171434",
+ "realAmount": "200000.0",
+ "promotionCode": "",
+ "Url": "http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard",
+ "mobileId": "111001655",
+ "clientId": "210012299",
+ "device": "Pixel 2 XL",
+ "ipAddress": "10.22.7.11",
+ "imei": "###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a",
+ "totalAmount": "200000.0",
+ "feeAmount": "0",
+ "pcTime": "171432",
+ "tellerId": "5078",
+ "tellerBranch": "06800",
+ "typeSource": "02",
+ "bankCard": "02"
+})
+254435 [pool-14-thread-10] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+254434 [pool-14-thread-7] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 0 ms
+254469 [pool-14-thread-7] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+254469 [pool-14-thread-7] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+254469 [pool-14-thread-7] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+254469 [pool-14-thread-7] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 0 ms
+254469 [pool-14-thread-10] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+254469 [pool-14-thread-2] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+254470 [pool-2-thread-33] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
+254907 [pool-2-thread-34] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"3KHM5s6KmoCFQlBpWIp6zCsXDnYJRqib","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+254931 [pool-14-thread-1] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+254931 [pool-14-thread-3] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=3KHM5s6KmoCFQlBpWIp6zCsXDnYJRqib, data={
+ "userName": "NGUY T T HA",
+ "customerName": "NGUY T T HA",
+ "tranxId": "700056569",
+ "mobileNo": "0336371711",
+ "accountNo": "4129770000000139",
+ "cusName": "NGUY T T HA",
+ "invoiceNo": "INV-E3R487X8CYUQVFB4",
+ "amount": 200000,
+ "status": "3",
+ "rescode": "00",
+ "bankCode": "970436",
+ "tranxNote": "Tru tien thanh cong, so trace 028977",
+ "tranxDate": "20211012171434",
+ "tipAndFee": "0",
+ "type": "2",
+ "item": [
+  {
+   "note": "",
+   "quantity": "1",
+   "qrInfor": "0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9"
+  }
+ ],
+ "qrInfo": "{\"version\":\"5.2.3\",\"PM\":\"Pixel 2 XL\",\"OV\":\"11\",\"PS\":\"IS_SAFE\",\"DT\":\"ANDROID\",\"IMEI\":\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\"}",
+ "orderCode": "700056569",
+ "quantity": "1",
+ "checkSum": "018bdd0b131b6f623bbff42c436b23dd",
+ "qrVersion": "2",
+ "mobile": "0336371711",
+ "respCode": "00",
+ "respDesc": "Tru tien thanh cong, so trace 028977",
+ "traceTransfer": "028977",
+ "messageType": "1",
+ "debitAmount": "200000.0",
+ "payDate": "20211012171434",
+ "realAmount": "200000.0",
+ "promotionCode": "",
+ "Url": "http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard",
+ "mobileId": "111001655",
+ "clientId": "210012299",
+ "device": "Pixel 2 XL",
+ "ipAddress": "10.22.7.11",
+ "imei": "###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a",
+ "totalAmount": "200000.0",
+ "feeAmount": "0",
+ "pcTime": "171432",
+ "tellerId": "5078",
+ "tellerBranch": "06800",
+ "typeSource": "02",
+ "bankCard": "02"
+})
+254932 [pool-14-thread-3] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 1 ms
+254980 [pool-14-thread-6] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+254980 [pool-14-thread-6] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+254980 [pool-14-thread-6] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+254981 [pool-14-thread-6] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 1 ms
+254981 [pool-14-thread-1] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+254981 [pool-14-thread-4] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+254981 [pool-2-thread-34] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
+256061 [pool-2-thread-31] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit begin receiving data: {"token":"hBHMyNnQm0nNG7XkXM2W6bY_ZK1P6FHn","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"}
+256062 [pool-14-thread-5] INFO  v.v.runnable.PushToRedisCallable - begin push to jedis: CustomerRequest(token=hBHMyNnQm0nNG7XkXM2W6bY_ZK1P6FHn, data={
+ "userName": "NGUY T T HA",
+ "customerName": "NGUY T T HA",
+ "tranxId": "700056569",
+ "mobileNo": "0336371711",
+ "accountNo": "4129770000000139",
+ "cusName": "NGUY T T HA",
+ "invoiceNo": "INV-E3R487X8CYUQVFB4",
+ "amount": 200000,
+ "status": "3",
+ "rescode": "00",
+ "bankCode": "970436",
+ "tranxNote": "Tru tien thanh cong, so trace 028977",
+ "tranxDate": "20211012171434",
+ "tipAndFee": "0",
+ "type": "2",
+ "item": [
+  {
+   "note": "",
+   "quantity": "1",
+   "qrInfor": "0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9"
+  }
+ ],
+ "qrInfo": "{\"version\":\"5.2.3\",\"PM\":\"Pixel 2 XL\",\"OV\":\"11\",\"PS\":\"IS_SAFE\",\"DT\":\"ANDROID\",\"IMEI\":\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\"}",
+ "orderCode": "700056569",
+ "quantity": "1",
+ "checkSum": "018bdd0b131b6f623bbff42c436b23dd",
+ "qrVersion": "2",
+ "mobile": "0336371711",
+ "respCode": "00",
+ "respDesc": "Tru tien thanh cong, so trace 028977",
+ "traceTransfer": "028977",
+ "messageType": "1",
+ "debitAmount": "200000.0",
+ "payDate": "20211012171434",
+ "realAmount": "200000.0",
+ "promotionCode": "",
+ "Url": "http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard",
+ "mobileId": "111001655",
+ "clientId": "210012299",
+ "device": "Pixel 2 XL",
+ "ipAddress": "10.22.7.11",
+ "imei": "###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a",
+ "totalAmount": "200000.0",
+ "feeAmount": "0",
+ "pcTime": "171432",
+ "tellerId": "5078",
+ "tellerBranch": "06800",
+ "typeSource": "02",
+ "bankCard": "02"
+})
+256062 [pool-14-thread-8] INFO  vn.vnpay.runnable.AllTaskDoneCheck - begin check all task done
+256078 [pool-14-thread-5] INFO  v.v.runnable.PushToRedisCallable - successfully push to jedis in 16 ms
+256101 [pool-14-thread-7] INFO  v.v.runnable.PushToOracleCallable - begin assigning json to variable
+256102 [pool-14-thread-7] INFO  v.v.runnable.PushToOracleCallable - successful assign json to variable
+256102 [pool-14-thread-7] INFO  v.v.runnable.PushToOracleCallable - begin pushing to database
+256102 [pool-14-thread-7] INFO  v.v.runnable.PushToOracleCallable - push to database successfully in 1 ms
+256102 [pool-14-thread-8] INFO  vn.vnpay.runnable.AllTaskDoneCheck - all Task is done
+256102 [pool-14-thread-9] INFO  vn.vnpay.runnable.LongRunningTask - all tasks is finished
+256102 [pool-2-thread-31] INFO  v.v.c.rabbit.RabbitConnectionCell - rabbit finish receiving data
