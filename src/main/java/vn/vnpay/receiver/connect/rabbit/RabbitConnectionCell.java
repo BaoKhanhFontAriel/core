@@ -92,11 +92,6 @@ public class RabbitConnectionCell {
                 apiResponse = new ApiResponse("00", "success", customerRequest.getToken());
             } catch (TimeoutException e) {
 
-                // cancel all running futures
-                timeOutFuture.cancel(true);
-                redisFuture.cancel(true);
-                oracleFuture.cancel(true);
-
                 // assign response message for time out error
                 apiResponse = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, customerRequest.getToken());
 
@@ -111,6 +106,11 @@ public class RabbitConnectionCell {
                 apiResponse = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e, customerRequest.getToken());
 
             } finally {
+
+                // cancel all running futures
+                timeOutFuture.cancel(true);
+                redisFuture.cancel(true);
+                oracleFuture.cancel(true);
 
                 if (ExecutorSingleton.getInstance().getIsErrorHappened()) {
                     apiResponse = new ApiResponse(ExecutorSingleton.getInstance().getError().getResCode(), "fail: " + ExecutorSingleton.getInstance().getError().getErrorMessage(), customerRequest.getToken());
