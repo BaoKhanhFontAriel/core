@@ -6,7 +6,7 @@ import vn.vnpay.receiver.connect.oracle.OracleConnectionCell;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.error.ErrorCode;
 import vn.vnpay.receiver.error.ExecutorError;
-import vn.vnpay.receiver.model.CustomerRequest;
+import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,19 +26,17 @@ public class PushToOracleCallable implements Callable {
 
     private static OracleConnectionPool oracleConnectionPool = OracleConnectionPool.getInstancePool();
 
-    private CustomerRequest customerRequest;
-
-    private Boolean isSuccessful;
+    private ApiRequest apiRequest;
     OracleConnectionCell oracleConnectionCell = oracleConnectionPool.getConnection();
 
-    public PushToOracleCallable(CustomerRequest customerRequest) {
-        this.customerRequest = customerRequest;
+    public PushToOracleCallable(ApiRequest apiRequest) {
+        this.apiRequest = apiRequest;
     }
 
     public void pushToDatabase() throws SQLException, ParseException, JSONException, InterruptedException {
         log.info("begin assigning json to variable");
         long start = System.currentTimeMillis();
-        String data = customerRequest.getData();
+        String data = apiRequest.getData();
         JSONObject jsonObject = new JSONObject(data);
         String customerName = jsonObject.getString("customerName");
         int rescode = jsonObject.getInt("rescode");
@@ -71,7 +69,6 @@ public class PushToOracleCallable implements Callable {
         oracleConnectionPool.releaseConnection(oracleConnectionCell);
 
         long end = System.currentTimeMillis();
-        isSuccessful = true;
 
         log.info("push to database successfully in {} ms", end - start);
 

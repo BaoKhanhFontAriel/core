@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import vn.vnpay.receiver.error.ErrorCode;
 import vn.vnpay.receiver.model.ApiResponse;
-import vn.vnpay.receiver.model.CustomerRequest;
+import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.runnable.LongRunningTask;
 import vn.vnpay.receiver.runnable.PushToOracleCallable;
 import vn.vnpay.receiver.runnable.PushToRedisCallable;
@@ -69,7 +69,7 @@ public class RabbitConnectionCell {
             log.info("rabbit begin receiving data: {}", json);
 
             ApiResponse apiResponse = null;
-            CustomerRequest customerRequest = GsonSingleton.getInstance().getGson().fromJson(json, CustomerRequest.class);
+            ApiRequest apiRequest = GsonSingleton.getInstance().getGson().fromJson(json, ApiRequest.class);
 
             // set up thread pool
             ScheduledExecutorService executor = ExecutorSingleton.getInstance().getExecutorService();
@@ -78,10 +78,10 @@ public class RabbitConnectionCell {
             Future timeOutFuture = executor.submit(new LongRunningTask());
 
             // add runnable for pushing to redis
-            Future redisFuture = executor.submit(new PushToRedisCallable(customerRequest));
+            Future redisFuture = executor.submit(new PushToRedisCallable(apiRequest));
 
             // add runnable for pushing to oracle
-            Future oracleFuture = executor.schedule(new PushToOracleCallable(customerRequest), TIME_SLEEP, TimeUnit.MILLISECONDS);
+            Future oracleFuture = executor.schedule(new PushToOracleCallable(apiRequest), TIME_SLEEP, TimeUnit.MILLISECONDS);
 
             try {
 
@@ -89,11 +89,10 @@ public class RabbitConnectionCell {
                 // else throw TimeOutException
                 timeOutFuture.get(TIME_OUT, TimeUnit.MILLISECONDS);
 
-                apiResponse = new ApiResponse("00", "success", customerRequest.getToken());
             } catch (TimeoutException e) {
 
                 // assign response message for time out error
-                apiResponse = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, customerRequest.getToken());
+                apiResponse = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, apiRequest.getToken());
 
                 // save to receiver.log
                 MDC.put("LOG_FILE", "receiver");
@@ -103,7 +102,7 @@ public class RabbitConnectionCell {
             } catch (ExecutionException | InterruptedException e) {
 
                 log.error("fail to send message to api: ", e);
-                apiResponse = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e, customerRequest.getToken());
+                apiResponse = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e, apiRequest.getToken());
 
             } finally {
 
@@ -112,8 +111,13 @@ public class RabbitConnectionCell {
                 redisFuture.cancel(true);
                 oracleFuture.cancel(true);
 
+                if (ExecutorSingleton.getInstance().getIsRedisFutureDone()
+                        && ExecutorSingleton.getInstance().getIsOracleFutureDone()){
+                    apiResponse = new ApiResponse("00", "success", apiRequest.getToken());
+                }
+
                 if (ExecutorSingleton.getInstance().getIsErrorHappened()) {
-                    apiResponse = new ApiResponse(ExecutorSingleton.getInstance().getError().getResCode(), "fail: " + ExecutorSingleton.getInstance().getError().getErrorMessage(), customerRequest.getToken());
+                    apiResponse = new ApiResponse(ExecutorSingleton.getInstance().getError().getResCode(), "fail: " + ExecutorSingleton.getInstance().getError().getErrorMessage(), apiRequest.getToken());
 
                     ExecutorSingleton.getInstance().setIsErrorHappened(false);
                     ExecutorSingleton.getInstance().setError(null);

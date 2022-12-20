@@ -1,4 +1,4 @@
-package vn.vnpay.receiver.connect.reddis;
+package vn.vnpay.receiver.connect.redis;
 
 import lombok.Getter;
 import lombok.Setter;

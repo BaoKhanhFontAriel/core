@@ -1,4 +1,4 @@
-package vn.vnpay.receiver.connect.reddis;
+package vn.vnpay.receiver.connect.redis;
 
 import vn.vnpay.receiver.utils.AppConfigSingleton;
 

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CustomerRequest {
+public class ApiRequest {
     private  String token;
     private  String data;
 }

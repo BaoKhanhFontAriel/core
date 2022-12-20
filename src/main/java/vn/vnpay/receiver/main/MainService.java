@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.connect.rabbit.RabbitConnectionCell;
 import vn.vnpay.receiver.connect.rabbit.RabbitConnectionPool;
-import vn.vnpay.receiver.connect.reddis.RedisConnectionPool;
+import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
 import vn.vnpay.receiver.thread.ShutdownThread;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
 import vn.vnpay.receiver.utils.GsonSingleton;
@@ -26,13 +26,12 @@ public class MainService {
 
     public static void main(String[] args) throws IOException, TimeoutException {
 
-//        oracleConnectionPool.start();
+        oracleConnectionPool.start();
         rabbitConnectionPool.start();
         redisConnectionPool.start();
 
         RabbitConnectionCell rabbitConnectionCell = rabbitConnectionPool.getConnection();
         rabbitConnectionCell.receiveAndSend();
-        rabbitConnectionPool.releaseConnection(rabbitConnectionCell);
 
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
     }

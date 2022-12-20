@@ -122,7 +122,6 @@ public class RabbitConnectionPool {
         }
         connectionWraper.setRelaxTime(System.currentTimeMillis());
         log.info("finish getting rabbit connection, ");
-        log.info("set relax time: {}", connectionWraper.getRelaxTime());
         return connectionWraper;
     }
 

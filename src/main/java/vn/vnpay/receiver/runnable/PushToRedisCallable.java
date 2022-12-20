@@ -1,14 +1,14 @@
 package vn.vnpay.receiver.runnable;
 
 import lombok.extern.slf4j.Slf4j;
-import vn.vnpay.receiver.connect.reddis.RedisConnectionCell;
-import vn.vnpay.receiver.connect.reddis.RedisConnectionPool;
-import vn.vnpay.receiver.error.ErrorCode;
-import vn.vnpay.receiver.error.ExecutorError;
-import vn.vnpay.receiver.model.CustomerRequest;
-import vn.vnpay.receiver.utils.ExecutorSingleton;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisException;
+import vn.vnpay.receiver.connect.redis.RedisConnectionCell;
+import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
+import vn.vnpay.receiver.error.ErrorCode;
+import vn.vnpay.receiver.error.ExecutorError;
+import vn.vnpay.receiver.model.ApiRequest;
+import vn.vnpay.receiver.utils.ExecutorSingleton;
 
 import java.util.concurrent.Callable;
 
@@ -17,31 +17,27 @@ import java.util.concurrent.Callable;
 public class PushToRedisCallable implements Callable {
 
     private static final int EXPIRE_TIME_SECONDS = 120;
-    private static RedisConnectionPool reddisConnectionPool = RedisConnectionPool.getInstancePool();
-
-    private CustomerRequest customerRequest;
-
-    private boolean isSuccessful;
-    private boolean isRunning = true;
+    private static RedisConnectionPool redisConnectionPool = RedisConnectionPool.getInstancePool();
+    private ApiRequest apiRequest;
     RedisConnectionCell redisConnectionCell = RedisConnectionPool.getInstancePool().getConnection();
-    public PushToRedisCallable(CustomerRequest customerRequest) {
-        this.customerRequest = customerRequest;
+    public PushToRedisCallable(ApiRequest apiRequest) {
+        this.apiRequest = apiRequest;
     }
 
     public void pushToRedis() throws JedisException, InterruptedException {
-        log.info("begin push to jedis: {}", customerRequest.toString());
+        log.info("begin push to jedis: {}", apiRequest.toString());
 
         long start = System.currentTimeMillis();
 
         Jedis jedis = redisConnectionCell.getJedis();
-        jedis.lpush(customerRequest.getToken(), customerRequest.getData());
-        jedis.expire(customerRequest.getToken(), EXPIRE_TIME_SECONDS);
-        reddisConnectionPool.releaseConnection(redisConnectionCell);
+        jedis.lpush(apiRequest.getToken(), apiRequest.getData());
+        jedis.expire(apiRequest.getToken(), EXPIRE_TIME_SECONDS);
+
+        redisConnectionPool.releaseConnection(redisConnectionCell);
 
         long end = System.currentTimeMillis();
 
         log.info("successfully push to jedis in {} ms", end - start);
-
     }
 
     @Override
@@ -53,7 +49,7 @@ public class PushToRedisCallable implements Callable {
             log.error("fail to push to redis: ", e);
             ExecutorSingleton.getInstance().setIsErrorHappened(true);
             ExecutorSingleton.getInstance().setError(new ExecutorError(ErrorCode.REDIS_ERROR, e.getMessage()));
-            reddisConnectionPool.releaseConnection(redisConnectionCell);
+            redisConnectionPool.releaseConnection(redisConnectionCell);
         }
         return null;
     }
