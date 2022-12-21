@@ -8,19 +8,24 @@ import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
 import vn.vnpay.receiver.error.ErrorCode;
 import vn.vnpay.receiver.error.ExecutorError;
 import vn.vnpay.receiver.model.ApiRequest;
-import vn.vnpay.receiver.utils.ExecutorSingleton;
-
-import java.util.concurrent.Callable;
+import vn.vnpay.receiver.model.ApiResponse;
 
 
 @Slf4j
-public class PushToRedisCallable implements Callable {
+public class PushToRedisRunnale implements Runnable {
 
     private static final int EXPIRE_TIME_SECONDS = 120;
     private static RedisConnectionPool redisConnectionPool = RedisConnectionPool.getInstancePool();
     private ApiRequest apiRequest;
+    private volatile boolean isErrorHappened;
+    private volatile ExecutorError error;
+    private volatile ApiResponse apiResponse;
+
+    private volatile String response;
+
     RedisConnectionCell redisConnectionCell = RedisConnectionPool.getInstancePool().getConnection();
-    public PushToRedisCallable(ApiRequest apiRequest) {
+
+    public PushToRedisRunnale(ApiRequest apiRequest) {
         this.apiRequest = apiRequest;
     }
 
@@ -41,16 +46,31 @@ public class PushToRedisCallable implements Callable {
     }
 
     @Override
-    public Object call() throws Exception {
+    public synchronized void run() {
+        log.info("api response in push to redis: {}", apiResponse);
+
         try {
             pushToRedis();
-            ExecutorSingleton.getInstance().setIsRedisFutureDone(true);
+//            ExecutorSingleton.getInstance().setIsRedisFutureDone(true);
         } catch (JedisException | InterruptedException e) {
             log.error("fail to push to redis: ", e);
-            ExecutorSingleton.getInstance().setIsErrorHappened(true);
-            ExecutorSingleton.getInstance().setError(new ExecutorError(ErrorCode.REDIS_ERROR, e.getMessage()));
-            redisConnectionPool.releaseConnection(redisConnectionCell);
+
+            synchronized (this ){
+                apiResponse = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
+                log.info("api response error in push to redis: {}", apiResponse);
+            }
+
+
+//            isErrorHappened = true;
+//            error = new ExecutorError(ErrorCode.REDIS_ERROR, e.getMessage());
+
+//            ExecutorSingleton.getInstance().setIsErrorHappened(true);
+//            ExecutorSingleton.getInstance().setError(new ExecutorError(ErrorCode.REDIS_ERROR, e.getMessage()));
+            try {
+                redisConnectionPool.releaseConnection(redisConnectionCell);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
         }
-        return null;
     }
 }

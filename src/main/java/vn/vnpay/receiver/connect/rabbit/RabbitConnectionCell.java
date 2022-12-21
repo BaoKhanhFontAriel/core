@@ -8,8 +8,8 @@ import vn.vnpay.receiver.error.ErrorCode;
 import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.runnable.LongRunningTask;
-import vn.vnpay.receiver.runnable.PushToOracleCallable;
-import vn.vnpay.receiver.runnable.PushToRedisCallable;
+import vn.vnpay.receiver.runnable.PushToOracleRunnable;
+import vn.vnpay.receiver.runnable.PushToRedisRunnale;
 import vn.vnpay.receiver.utils.AppConfigSingleton;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
 import vn.vnpay.receiver.utils.GsonSingleton;
@@ -17,6 +17,8 @@ import vn.vnpay.receiver.utils.GsonSingleton;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +42,12 @@ public class RabbitConnectionCell {
     private long timeOut;
     private Connection conn;
     private Channel channel;
+
+//    private volatile ApiResponse apiResponse;
+
+    private AtomicReference<ApiResponse> apiResponse;
+
+    private AtomicBoolean isSuccessful = new AtomicBoolean();
 
     public RabbitConnectionCell(ConnectionFactory factory, String exchangeName, String exchangeType, String routingKey, long relaxTime) {
 
@@ -68,8 +76,11 @@ public class RabbitConnectionCell {
             log.info("----");
             log.info("rabbit begin receiving data: {}", json);
 
-            ApiResponse apiResponse = null;
             ApiRequest apiRequest = GsonSingleton.getInstance().getGson().fromJson(json, ApiRequest.class);
+//            apiResponse = new ApiResponse("00", "success", apiRequest.getToken());
+            isSuccessful.set(true);
+            log.info("isSuccessful: {}", isSuccessful);
+
 
             // set up thread pool
             ScheduledExecutorService executor = ExecutorSingleton.getInstance().getExecutorService();
@@ -78,10 +89,10 @@ public class RabbitConnectionCell {
             Future timeOutFuture = executor.submit(new LongRunningTask());
 
             // add runnable for pushing to redis
-            Future redisFuture = executor.submit(new PushToRedisCallable(apiRequest));
+            executor.submit(new PushToRedisRunnale(apiRequest));
 
             // add runnable for pushing to oracle
-            Future oracleFuture = executor.schedule(new PushToOracleCallable(apiRequest), TIME_SLEEP, TimeUnit.MILLISECONDS);
+            executor.schedule(new PushToOracleRunnable(apiRequest, apiResponse), TIME_SLEEP, TimeUnit.MILLISECONDS);
 
             try {
 
@@ -92,7 +103,7 @@ public class RabbitConnectionCell {
             } catch (TimeoutException e) {
 
                 // assign response message for time out error
-                apiResponse = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, apiRequest.getToken());
+//                apiResponse = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, apiRequest.getToken());
 
                 // save to receiver.log
                 MDC.put("LOG_FILE", "receiver");
@@ -102,35 +113,37 @@ public class RabbitConnectionCell {
             } catch (ExecutionException | InterruptedException e) {
 
                 log.error("fail to send message to api: ", e);
-                apiResponse = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e, apiRequest.getToken());
+                apiResponse.set(new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e, apiRequest.getToken()));
 
             } finally {
 
                 // cancel all running futures
-                timeOutFuture.cancel(true);
-                redisFuture.cancel(true);
-                oracleFuture.cancel(true);
+//                timeOutFuture.cancel(true);
+//                redisFuture.cancel(true);
+//                oracleFuture.cancel(true);
 
-                if (ExecutorSingleton.getInstance().getIsRedisFutureDone()
-                        && ExecutorSingleton.getInstance().getIsOracleFutureDone()){
-                    apiResponse = new ApiResponse("00", "success", apiRequest.getToken());
-                }
-
-                if (ExecutorSingleton.getInstance().getIsErrorHappened()) {
-                    apiResponse = new ApiResponse(ExecutorSingleton.getInstance().getError().getResCode(), "fail: " + ExecutorSingleton.getInstance().getError().getErrorMessage(), apiRequest.getToken());
-
-                    ExecutorSingleton.getInstance().setIsErrorHappened(false);
-                    ExecutorSingleton.getInstance().setError(null);
-                }
+//                if (ExecutorSingleton.getInstance().getIsRedisFutureDone()
+//                        && ExecutorSingleton.getInstance().getIsOracleFutureDone()){
+//                    apiResponse = new ApiResponse("00", "success", apiRequest.getToken());
+//                }
+//
+//                if (ExecutorSingleton.getInstance().getIsErrorHappened()) {
+//                    apiResponse = new ApiResponse(ExecutorSingleton.getInstance().getError().getResCode(), "fail: " + ExecutorSingleton.getInstance().getError().getErrorMessage(), apiRequest.getToken());
+//
+//                    ExecutorSingleton.getInstance().setIsErrorHappened(false);
+//                    ExecutorSingleton.getInstance().setError(null);
+//                }
 
                 // send message
+                log.info("api response in rabbit: {}", apiResponse);
+                log.info("isSuccessful: {}", isSuccessful.get());
                 String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
                 AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder().correlationId(delivery.getProperties().getCorrelationId()).build();
                 channel.basicPublish("", delivery.getProperties().getReplyTo(), replyProps, message.getBytes(StandardCharsets.UTF_8));
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
 
-                ExecutorSingleton.getInstance().setIsRedisFutureDone(false);
-                ExecutorSingleton.getInstance().setIsOracleFutureDone(false);
+//                ExecutorSingleton.getInstance().setIsRedisFutureDone(false);
+//                ExecutorSingleton.getInstance().setIsOracleFutureDone(false);
             }
             log.info("rabbit finish receiving data");
         };
