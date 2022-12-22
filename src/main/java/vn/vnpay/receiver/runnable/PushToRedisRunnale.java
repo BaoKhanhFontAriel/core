@@ -10,6 +10,8 @@ import vn.vnpay.receiver.error.ExecutorError;
 import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 
 @Slf4j
 public class PushToRedisRunnale implements Runnable {
@@ -17,27 +19,23 @@ public class PushToRedisRunnale implements Runnable {
     private static final int EXPIRE_TIME_SECONDS = 120;
     private static RedisConnectionPool redisConnectionPool = RedisConnectionPool.getInstancePool();
     private ApiRequest apiRequest;
-    private volatile boolean isErrorHappened;
-    private volatile ExecutorError error;
-    private volatile ApiResponse apiResponse;
-
-    private volatile String response;
+    private AtomicReference<ApiResponse> apiResponse;
 
     RedisConnectionCell redisConnectionCell = RedisConnectionPool.getInstancePool().getConnection();
 
-    public PushToRedisRunnale(ApiRequest apiRequest) {
+    public PushToRedisRunnale(ApiRequest apiRequest, AtomicReference<ApiResponse> apiResponse) {
         this.apiRequest = apiRequest;
+        this.apiResponse = apiResponse;
     }
 
     public void pushToRedis() throws JedisException, InterruptedException {
-        log.info("begin push to jedis: {}", apiRequest.toString());
+        log.info("begin push to jedis");
 
         long start = System.currentTimeMillis();
 
         Jedis jedis = redisConnectionCell.getJedis();
         jedis.lpush(apiRequest.getToken(), apiRequest.getData());
         jedis.expire(apiRequest.getToken(), EXPIRE_TIME_SECONDS);
-
         redisConnectionPool.releaseConnection(redisConnectionCell);
 
         long end = System.currentTimeMillis();
@@ -54,23 +52,14 @@ public class PushToRedisRunnale implements Runnable {
 //            ExecutorSingleton.getInstance().setIsRedisFutureDone(true);
         } catch (JedisException | InterruptedException e) {
             log.error("fail to push to redis: ", e);
+            apiResponse.set(new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken()));
 
-            synchronized (this ){
-                apiResponse = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
-                log.info("api response error in push to redis: {}", apiResponse);
-            }
-
-
-//            isErrorHappened = true;
-//            error = new ExecutorError(ErrorCode.REDIS_ERROR, e.getMessage());
-
-//            ExecutorSingleton.getInstance().setIsErrorHappened(true);
-//            ExecutorSingleton.getInstance().setError(new ExecutorError(ErrorCode.REDIS_ERROR, e.getMessage()));
             try {
                 redisConnectionPool.releaseConnection(redisConnectionCell);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
+
         }
     }
 }
