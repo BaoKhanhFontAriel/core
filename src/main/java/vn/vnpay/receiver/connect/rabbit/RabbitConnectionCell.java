@@ -4,11 +4,12 @@ import com.rabbitmq.client.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.slf4j.MDC;
+import vn.vnpay.receiver.error.ErrorCode;
 import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.model.ApiRequest;
-import vn.vnpay.receiver.runnable.TimeCounter;
-import vn.vnpay.receiver.runnable.PushToOracleRunnable;
-import vn.vnpay.receiver.runnable.PushToRedisRunnale;
+import vn.vnpay.receiver.runnable.PushToOracleCallable;
+import vn.vnpay.receiver.runnable.PushToRedisCallable;
 import vn.vnpay.receiver.utils.AppConfigSingleton;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
 import vn.vnpay.receiver.utils.GsonSingleton;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -40,11 +42,8 @@ public class RabbitConnectionCell {
     private long relaxTime;
     private long timeOut;
     private Connection conn;
-    private Channel channel;
+    private volatile Channel channel;
     private AtomicReference<ApiResponse> apiResponse = new AtomicReference<>();
-
-    volatile boolean isFinished = true;
-    volatile long start = 0;
 
     public RabbitConnectionCell(ConnectionFactory factory, String exchangeName, String exchangeType, String routingKey, long relaxTime) {
 
@@ -78,76 +77,53 @@ public class RabbitConnectionCell {
 
             // set up thread pool
             ScheduledExecutorService executor = ExecutorSingleton.getInstance().getExecutorService();
-
-            // add runnable task for counting time
-            Future timeOutFuture = executor.submit(new TimeCounter());
-
             // add runnable for pushing to redis
-            Future redisFuture = executor.submit(new PushToRedisRunnale(apiRequest, apiResponse));
-
+            Future redisFuture = executor.submit(new PushToRedisCallable(apiRequest, apiResponse));
             // add runnable for pushing to oracle
-            Future oracleFuture = executor.schedule(new PushToOracleRunnable(apiRequest, apiResponse), TIME_SLEEP, TimeUnit.MILLISECONDS);
+            Future oracleFuture = executor.schedule(new PushToOracleCallable(apiRequest, apiResponse), TIME_SLEEP, TimeUnit.MILLISECONDS);
 
             List<Future> futureList = new ArrayList<>();
             futureList.add(redisFuture);
             futureList.add(oracleFuture);
 
-
-            Thread thread1 = new Thread(() ->{
-                start = System.currentTimeMillis();
-                for (Future f : futureList) {
-                    try {
-                        f.get();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    } catch (ExecutionException e) {
-                        throw new RuntimeException(e);
+            // concurrency for redis and oracle
+            // redis -> oracle
+            for (Future f : futureList) {
+                try {
+                    ApiResponse response = (ApiResponse) f.get(TIME_OUT, TimeUnit.MILLISECONDS);
+                    if (response != null) {
+                        apiResponse.set(response);
+                        break;
                     }
+                } catch (InterruptedException e) {
+                    log.info("{} has InterruptedException: {}", Thread.currentThread().getName(), e.getMessage());
+                    apiResponse.set(new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail: " + e.getMessage(), apiRequest.getToken()));
+                } catch (ExecutionException e) {
+                    log.info("{} has execution error: {}", Thread.currentThread().getName(), e.getMessage());
+                    apiResponse.set(new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e.getMessage(), apiRequest.getToken()));
+                } catch (TimeoutException e) {
+                    log.info("Time execution in core is over 1 minute: ", e);
+                    apiResponse.set(new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, apiRequest.getToken()));
                 }
+            }
 
-                isFinished = true;
-            });
-
-            Thread thread2 = new Thread(() -> {
-                while (!isFinished){
-                    try {
-                        if (System.currentTimeMillis() - start >= TIME_OUT){
-                            throw new TimeoutException();
-                        }
-                    }
-                    catch (Exception e){
-                        isFinished = false;
-                        log.info("time exception: ", e);
-                    }
-                }
-            });
-
-            thread1.start();
-            thread2.start();
+            // send message
+            String message = GsonSingleton.getInstance().getGson().toJson(apiResponse.get());
+            AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder()
+                    .correlationId(delivery.getProperties().getCorrelationId())
+                    .build();
 
             try {
+                channel.basicPublish(
+                        "",
+                        delivery.getProperties().getReplyTo(),
+                        replyProps,
+                        message.getBytes(StandardCharsets.UTF_8));
 
-                // set time to execute task under 1 minute
-                // else throw TimeOutException
-//                timeOutFuture.get(TIME_OUT, TimeUnit.MILLISECONDS);
-
-            }
-//            catch (TimeoutException | ExecutionException | InterruptedException e) {
-//                // save to receiver.log
-//                MDC.put("LOG_FILE", "receiver");
-//                log.error("Time execution in core is over 1 minute ", e);
-//                MDC.remove("LOG_FILE");
-//            }
-
-            finally {
-
-                // send message
-                String message = GsonSingleton.getInstance().getGson().toJson(apiResponse.get());
-                AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder().correlationId(delivery.getProperties().getCorrelationId()).build();
-                channel.basicPublish("", delivery.getProperties().getReplyTo(), replyProps, message.getBytes(StandardCharsets.UTF_8));
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            log.info("rabbit finish receiving data");
         };
 
         try {
@@ -157,6 +133,8 @@ public class RabbitConnectionCell {
         } catch (IOException e) {
             log.error("rabbit fail to receive data: {0}", e);
         }
+
+        log.info("rabbit finish receiving data");
     }
 
     public boolean isTimeOut() {
@@ -177,5 +155,4 @@ public class RabbitConnectionCell {
     public boolean isClosed() throws Exception {
         return !conn.isOpen();
     }
-
 }

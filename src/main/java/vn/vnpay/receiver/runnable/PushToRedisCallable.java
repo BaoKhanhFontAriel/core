@@ -6,26 +6,23 @@ import redis.clients.jedis.exceptions.JedisException;
 import vn.vnpay.receiver.connect.redis.RedisConnectionCell;
 import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
 import vn.vnpay.receiver.error.ErrorCode;
-import vn.vnpay.receiver.error.ExecutorError;
 import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 
 
 @Slf4j
-public class PushToRedisRunnale implements Runnable {
+public class PushToRedisCallable implements Callable<ApiResponse> {
 
     private static final int EXPIRE_TIME_SECONDS = 120;
     private static RedisConnectionPool redisConnectionPool = RedisConnectionPool.getInstancePool();
     private ApiRequest apiRequest;
-    private AtomicReference<ApiResponse> apiResponse;
-
     RedisConnectionCell redisConnectionCell = RedisConnectionPool.getInstancePool().getConnection();
 
-    public PushToRedisRunnale(ApiRequest apiRequest, AtomicReference<ApiResponse> apiResponse) {
+    public PushToRedisCallable(ApiRequest apiRequest, AtomicReference<ApiResponse> apiResponse) {
         this.apiRequest = apiRequest;
-        this.apiResponse = apiResponse;
     }
 
     public void pushToRedis() throws JedisException, InterruptedException {
@@ -44,22 +41,22 @@ public class PushToRedisRunnale implements Runnable {
     }
 
     @Override
-    public synchronized void run() {
-        log.info("api response in push to redis: {}", apiResponse);
+    public ApiResponse call() throws InterruptedException, JedisException {
+        log.info("push to redis");
+        ApiResponse apiResponse = null;
 
         try {
             pushToRedis();
-//            ExecutorSingleton.getInstance().setIsRedisFutureDone(true);
         } catch (JedisException | InterruptedException e) {
             log.error("fail to push to redis: ", e);
-            apiResponse.set(new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken()));
+             apiResponse = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
 
             try {
                 redisConnectionPool.releaseConnection(redisConnectionCell);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
-
         }
+        return apiResponse;
     }
 }

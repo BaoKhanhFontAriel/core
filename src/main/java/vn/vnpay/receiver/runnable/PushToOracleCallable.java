@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionCell;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.error.ErrorCode;
-import vn.vnpay.receiver.error.ExecutorError;
 import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
@@ -19,22 +18,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @Getter
-public class PushToOracleRunnable implements Runnable {
+public class PushToOracleCallable implements Callable<ApiResponse> {
 
     private static OracleConnectionPool oracleConnectionPool = OracleConnectionPool.getInstancePool();
 
     private ApiRequest apiRequest;
-    private AtomicReference<ApiResponse> apiResponse;
     OracleConnectionCell oracleConnectionCell = oracleConnectionPool.getConnection();
 
-    public PushToOracleRunnable(ApiRequest apiRequest, AtomicReference<ApiResponse> apiResponse) {
+    public PushToOracleCallable(ApiRequest apiRequest, AtomicReference<ApiResponse> apiResponse) {
         this.apiRequest = apiRequest;
-        this.apiResponse = apiResponse;
     }
 
     public void pushToDatabase() throws SQLException, ParseException, JSONException, InterruptedException {
@@ -76,18 +73,18 @@ public class PushToOracleRunnable implements Runnable {
         long end = System.currentTimeMillis();
 
         log.info("push to database successfully in {} ms", end - start);
-
-        ExecutorSingleton.getInstance().setIsOracleFutureDone(true);
     }
 
     @Override
-    public void run() {
+    public ApiResponse call() throws SQLException, ParseException, JSONException, InterruptedException {
+        ApiResponse response = null;
         try {
             pushToDatabase();
-        } catch (SQLException | ParseException | JSONException | InterruptedException e) {
+        } catch (Exception e) {
             log.error("fail to push to database: ", e);
-            apiResponse.set(new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken()));
+            response = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
             oracleConnectionPool.releaseConnection(oracleConnectionCell);
         }
+        return response;
     }
 }

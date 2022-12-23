@@ -16,19 +16,11 @@ import java.util.concurrent.ScheduledExecutorService;
 @ToString
 public class ExecutorSingleton {
     private static ExecutorSingleton instance;
-    private Boolean isOracleFutureDone;
-    private Boolean isRedisFutureDone;
-    private Boolean isErrorHappened ;
-    private ExecutorError error;
     private ScheduledExecutorService executorService;
 
     public ExecutorSingleton(){
         log.info("create new ExecutorServiceSingleton...");
         this.executorService = Executors.newScheduledThreadPool(10);
-        this.isOracleFutureDone = false;
-        this.isRedisFutureDone = false;
-        this.isErrorHappened = false;
-        this.error = null;
     }
 
     public static ExecutorSingleton getInstance(){
