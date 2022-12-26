@@ -7,7 +7,6 @@ import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.error.ErrorCode;
 import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
-import vn.vnpay.receiver.utils.ExecutorSingleton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.concurrent.Callable;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @Getter
@@ -30,7 +28,7 @@ public class PushToOracleCallable implements Callable<ApiResponse> {
     private ApiRequest apiRequest;
     OracleConnectionCell oracleConnectionCell = oracleConnectionPool.getConnection();
 
-    public PushToOracleCallable(ApiRequest apiRequest, AtomicReference<ApiResponse> apiResponse) {
+    public PushToOracleCallable(ApiRequest apiRequest) {
         this.apiRequest = apiRequest;
     }
 

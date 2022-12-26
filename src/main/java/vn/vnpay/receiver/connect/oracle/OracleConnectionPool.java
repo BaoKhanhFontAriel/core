@@ -21,37 +21,37 @@ public class OracleConnectionPool {
     protected int numOfConnectionCreated = 0;
 
     protected String sid;
-    protected int max_pool_size;
-    protected int init_pool_size;
-    protected int min_pool_size;
-    protected long time_out = 10000;
+    protected int maxPoolSize;
+    protected int initPoolSize;
+    protected int minPoolSize;
+    protected long timeOut = 10000;
 
     protected String url;
     protected String user;
     protected String password;
 
     protected Thread thread;
-    protected long start_time;
-    protected long end_time;
+    protected long startTime;
+    protected long endTime;
     protected static OracleConnectionPool instancePool;
 
     public synchronized static OracleConnectionPool getInstancePool() {
         if (instancePool == null) {
             instancePool = new OracleConnectionPool();
-            instancePool.init_pool_size = OracleConnectionPoolConfig.INIT_POOL_SIZE;
-            instancePool.max_pool_size = OracleConnectionPoolConfig.MAX_POOL_SIZE;
-            instancePool.min_pool_size = OracleConnectionPoolConfig.MIN_POOL_SIZE;
+            instancePool.initPoolSize = OracleConnectionPoolConfig.INIT_POOL_SIZE;
+            instancePool.maxPoolSize = OracleConnectionPoolConfig.MAX_POOL_SIZE;
+            instancePool.minPoolSize = OracleConnectionPoolConfig.MIN_POOL_SIZE;
             instancePool.url = OracleConnectionPoolConfig.URL;
             instancePool.user = OracleConnectionPoolConfig.USERNAME;
             instancePool.password = OracleConnectionPoolConfig.PASSWORD;
-            instancePool.time_out = OracleConnectionPoolConfig.TIME_OUT;
+            instancePool.timeOut = OracleConnectionPoolConfig.TIME_OUT;
             /*
              * When the number of connection > min connection , close TimeOut Connection
              */
             instancePool.thread = new Thread(() -> {
                 while (true) {
                     for (OracleConnectionCell connection : instancePool.pool) {
-                        if (instancePool.numOfConnectionCreated > instancePool.min_pool_size) {
+                        if (instancePool.numOfConnectionCreated > instancePool.minPoolSize) {
                             if (connection.isTimeOut()) {
                                 try {
                                     connection.close();
@@ -72,10 +72,10 @@ public class OracleConnectionPool {
     public void start() {
         log.info("Create oracle Connection pool........................ ");
         // Load Connection to Pool
-        start_time = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
         try {
-            for (int i = 0; i < init_pool_size; i++) {
-                OracleConnectionCell connection = new OracleConnectionCell(url, user, password, time_out);
+            for (int i = 0; i < initPoolSize; i++) {
+                OracleConnectionCell connection = new OracleConnectionCell(url, user, password, timeOut);
                 pool.put(connection);
                 numOfConnectionCreated++;
             }
@@ -85,14 +85,14 @@ public class OracleConnectionPool {
                     this.toString(), e));
         }
         thread.start();
-        end_time = System.currentTimeMillis();
-        log.info("Start Rabbit Connection pool in : {} ms", (end_time - start_time));
+        endTime = System.currentTimeMillis();
+        log.info("Start Rabbit Connection pool in : {} ms", (endTime - startTime));
     }
 
     public synchronized OracleConnectionCell getConnection() {
         OracleConnectionCell connectionWraper = null;
-        if (pool.size() == 0 && numOfConnectionCreated < max_pool_size) {
-            connectionWraper = new OracleConnectionCell(url, user, password, time_out);
+        if (pool.size() == 0 && numOfConnectionCreated < maxPoolSize) {
+            connectionWraper = new OracleConnectionCell(url, user, password, timeOut);
             try {
                 pool.put(connectionWraper);
             } catch (InterruptedException e) {
@@ -118,7 +118,7 @@ public class OracleConnectionPool {
         try {
             if (conn.isClosed()) {
                 pool.remove(conn);
-                OracleConnectionCell connection = new OracleConnectionCell(url, user, password, time_out);
+                OracleConnectionCell connection = new OracleConnectionCell(url, user, password, timeOut);
                 pool.put(connection);
             } else {
                 pool.put(conn);

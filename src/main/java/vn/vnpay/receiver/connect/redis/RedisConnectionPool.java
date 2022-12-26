@@ -16,30 +16,30 @@ public class RedisConnectionPool {
     private LinkedBlockingQueue<RedisConnectionCell> pool = new LinkedBlockingQueue<>();
     protected int numOfConnectionCreated = 0;
 
-    protected int max_pool_size;
-    protected int init_pool_size;
-    protected int min_pool_size;
-    protected long time_out = 10000;
+    protected int maxPoolSize;
+    protected int initPoolSize;
+    protected int minPoolSize;
+    protected long timeOut = 10000;
 
     protected String url;
 
     protected Thread thread;
-    protected long start_time;
-    protected long end_time;
+    protected long startTime;
+    protected long endTime;
     protected static RedisConnectionPool instancePool;
 
     public synchronized static RedisConnectionPool getInstancePool() {
         if (instancePool == null) {
             instancePool = new RedisConnectionPool();
-            instancePool.init_pool_size = RedisConnectionPoolConfig.INIT_POOL_SIZE;
-            instancePool.max_pool_size = RedisConnectionPoolConfig.MAX_POOL_SIZE;
-            instancePool.min_pool_size = RedisConnectionPoolConfig.MIN_POOL_SIZE;
+            instancePool.initPoolSize = RedisConnectionPoolConfig.INIT_POOL_SIZE;
+            instancePool.maxPoolSize = RedisConnectionPoolConfig.MAX_POOL_SIZE;
+            instancePool.minPoolSize = RedisConnectionPoolConfig.MIN_POOL_SIZE;
             instancePool.url = RedisConnectionPoolConfig.URL;
-            instancePool.time_out = RedisConnectionPoolConfig.TIME_OUT;
+            instancePool.timeOut = RedisConnectionPoolConfig.TIME_OUT;
             instancePool.thread = new Thread(() -> {
                 while (true) {
                     for (RedisConnectionCell connection : instancePool.pool) {
-                        if (instancePool.numOfConnectionCreated > instancePool.min_pool_size) {
+                        if (instancePool.numOfConnectionCreated > instancePool.minPoolSize) {
                             if (connection.isTimeOut()) {
                                 try {
                                     connection.close();
@@ -61,10 +61,10 @@ public class RedisConnectionPool {
     public void start() {
         log.info("Create Reddis Connection pool........................ ");
         // Load Connection to Pool
-        start_time = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
         try {
-            for (int i = 0; i < init_pool_size; i++) {
-                RedisConnectionCell connection = new RedisConnectionCell(url, time_out);
+            for (int i = 0; i < initPoolSize; i++) {
+                RedisConnectionCell connection = new RedisConnectionCell(url, timeOut);
                 pool.put(connection);
                 numOfConnectionCreated++;
             }
@@ -74,14 +74,14 @@ public class RedisConnectionPool {
                     this.toString(), e));
         }
         thread.start();
-        end_time = System.currentTimeMillis();
-        log.info("Start Rabbit Connection pool in : {} ms", (end_time - start_time));
+        endTime = System.currentTimeMillis();
+        log.info("Start Rabbit Connection pool in : {} ms", (endTime - startTime));
     }
 
     public synchronized RedisConnectionCell getConnection() {
         RedisConnectionCell connectionWraper = null;
-        if (pool.size() == 0 && numOfConnectionCreated < max_pool_size) {
-            connectionWraper = new RedisConnectionCell(url, time_out);
+        if (pool.size() == 0 && numOfConnectionCreated < maxPoolSize) {
+            connectionWraper = new RedisConnectionCell(url, timeOut);
             try {
                 pool.put(connectionWraper);
             } catch (InterruptedException e) {
@@ -107,7 +107,7 @@ public class RedisConnectionPool {
         try {
             if (conn.isClosed()) {
                 pool.remove(conn);
-                RedisConnectionCell connection = new RedisConnectionCell(url, time_out);
+                RedisConnectionCell connection = new RedisConnectionCell(url, timeOut);
                 pool.put(connection);
             } else {
                 try {

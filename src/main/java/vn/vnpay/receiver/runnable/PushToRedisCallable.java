@@ -21,7 +21,7 @@ public class PushToRedisCallable implements Callable<ApiResponse> {
     private ApiRequest apiRequest;
     RedisConnectionCell redisConnectionCell = RedisConnectionPool.getInstancePool().getConnection();
 
-    public PushToRedisCallable(ApiRequest apiRequest, AtomicReference<ApiResponse> apiResponse) {
+    public PushToRedisCallable(ApiRequest apiRequest) {
         this.apiRequest = apiRequest;
     }
 

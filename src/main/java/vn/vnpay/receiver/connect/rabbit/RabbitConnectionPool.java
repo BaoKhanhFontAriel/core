@@ -26,10 +26,10 @@ public class RabbitConnectionPool {
     private ConnectionFactory factory;
 
     protected int numOfConnectionCreated = 0;
-    protected int max_pool_size;
-    protected int init_pool_size;
-    protected int min_pool_size;
-    protected long time_out = 10000;
+    protected int maxPoolSize;
+    protected int initPoolSize;
+    protected int minPoolSize;
+    protected long timeOut = 10000;
 
     protected String host;
     protected String queueName;
@@ -47,20 +47,20 @@ public class RabbitConnectionPool {
     public synchronized static RabbitConnectionPool getInstancePool() {
         if (instancePool == null) {
             instancePool = new RabbitConnectionPool();
-            instancePool.init_pool_size = RabbitConnectionPoolConfig.INIT_POOL_SIZE;
-            instancePool.max_pool_size = RabbitConnectionPoolConfig.MAX_POOL_SIZE;
-            instancePool.min_pool_size = RabbitConnectionPoolConfig.MIN_POOL_SIZE;
+            instancePool.initPoolSize = RabbitConnectionPoolConfig.INIT_POOL_SIZE;
+            instancePool.maxPoolSize = RabbitConnectionPoolConfig.MAX_POOL_SIZE;
+            instancePool.minPoolSize = RabbitConnectionPoolConfig.MIN_POOL_SIZE;
             instancePool.factory =  new ConnectionFactory();
             instancePool.factory.setHost(RabbitConnectionPoolConfig.HOST);
             instancePool.queueName = RabbitConnectionPoolConfig.QUEUE_NAME;
             instancePool.exchangeName = RabbitConnectionPoolConfig.EXCHANGE_NAME;
             instancePool.exchangeType = RabbitConnectionPoolConfig.EXCHANGE_TYPE;
             instancePool.routingKey = RabbitConnectionPoolConfig.ROUTING_KEY;
-            instancePool.time_out = RabbitConnectionPoolConfig.TIME_OUT;
+            instancePool.timeOut = RabbitConnectionPoolConfig.TIME_OUT;
             instancePool.thread = new Thread(() -> {
                 while(true){
                     for (RabbitConnectionCell connection : instancePool.pool) {
-                        if (instancePool.numOfConnectionCreated > instancePool.min_pool_size) {
+                        if (instancePool.numOfConnectionCreated > instancePool.minPoolSize) {
                             if (connection.isTimeOut()) {
                                 try {
                                     connection.close();
@@ -84,8 +84,8 @@ public class RabbitConnectionPool {
         // Load Connection to Pool
         start_time = System.currentTimeMillis();
         try {
-            for (int i = 0; i < init_pool_size; i++) {
-                RabbitConnectionCell connection = new RabbitConnectionCell(factory, exchangeName, exchangeType, routingKey, time_out);
+            for (int i = 0; i < initPoolSize; i++) {
+                RabbitConnectionCell connection = new RabbitConnectionCell(factory, exchangeName, exchangeType, routingKey, timeOut);
                 pool.put(connection);
                 numOfConnectionCreated++;
             }
@@ -101,8 +101,8 @@ public class RabbitConnectionPool {
     public synchronized RabbitConnectionCell getConnection() {
         log.info("begin getting rabbit connection!");
         RabbitConnectionCell connectionWraper = null;
-        if (pool.size() == 0 && numOfConnectionCreated < max_pool_size) {
-            connectionWraper = new RabbitConnectionCell(factory, exchangeName, exchangeType, routingKey, time_out);
+        if (pool.size() == 0 && numOfConnectionCreated < maxPoolSize) {
+            connectionWraper = new RabbitConnectionCell(factory, exchangeName, exchangeType, routingKey, timeOut);
             try {
                 pool.put(connectionWraper);
             } catch (InterruptedException e) {
@@ -131,7 +131,7 @@ public class RabbitConnectionPool {
         try {
             if (conn.isClosed()) {
                 pool.remove(conn);
-                RabbitConnectionCell connection = new RabbitConnectionCell(factory, exchangeName, exchangeType, routingKey, time_out);
+                RabbitConnectionCell connection = new RabbitConnectionCell(factory, exchangeName, exchangeType, routingKey, timeOut);
                 pool.put(connection);
             } else {
                 pool.put(conn);

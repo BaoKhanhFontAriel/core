@@ -43,7 +43,7 @@ public class RabbitConnectionCell {
     private long timeOut;
     private Connection conn;
     private volatile Channel channel;
-    private AtomicReference<ApiResponse> apiResponse = new AtomicReference<>();
+    private ApiResponse apiResponse;
 
     public RabbitConnectionCell(ConnectionFactory factory, String exchangeName, String exchangeType, String routingKey, long relaxTime) {
 
@@ -73,14 +73,14 @@ public class RabbitConnectionCell {
             log.info("rabbit begin receiving data: {}", json);
 
             ApiRequest apiRequest = GsonSingleton.getInstance().getGson().fromJson(json, ApiRequest.class);
-            apiResponse.set(new ApiResponse("00", "success", apiRequest.getToken()));
+            apiResponse = new ApiResponse("00", "success", apiRequest.getToken());
 
             // set up thread pool
             ScheduledExecutorService executor = ExecutorSingleton.getInstance().getExecutorService();
             // add runnable for pushing to redis
-            Future redisFuture = executor.submit(new PushToRedisCallable(apiRequest, apiResponse));
+            Future redisFuture = executor.submit(new PushToRedisCallable(apiRequest));
             // add runnable for pushing to oracle
-            Future oracleFuture = executor.schedule(new PushToOracleCallable(apiRequest, apiResponse), TIME_SLEEP, TimeUnit.MILLISECONDS);
+            Future oracleFuture = executor.schedule(new PushToOracleCallable(apiRequest), TIME_SLEEP, TimeUnit.MILLISECONDS);
 
             List<Future> futureList = new ArrayList<>();
             futureList.add(redisFuture);
@@ -92,33 +92,27 @@ public class RabbitConnectionCell {
                 try {
                     ApiResponse response = (ApiResponse) f.get(TIME_OUT, TimeUnit.MILLISECONDS);
                     if (response != null) {
-                        apiResponse.set(response);
+                        apiResponse = response;
                         break;
                     }
                 } catch (InterruptedException e) {
                     log.info("{} has InterruptedException: {}", Thread.currentThread().getName(), e.getMessage());
-                    apiResponse.set(new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail: " + e.getMessage(), apiRequest.getToken()));
+                    apiResponse = new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
                 } catch (ExecutionException e) {
                     log.info("{} has execution error: {}", Thread.currentThread().getName(), e.getMessage());
-                    apiResponse.set(new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e.getMessage(), apiRequest.getToken()));
+                    apiResponse = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
                 } catch (TimeoutException e) {
                     log.info("Time execution in core is over 1 minute: ", e);
-                    apiResponse.set(new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, apiRequest.getToken()));
+                    apiResponse = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, apiRequest.getToken());
                 }
             }
 
             // send message
-            String message = GsonSingleton.getInstance().getGson().toJson(apiResponse.get());
-            AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder()
-                    .correlationId(delivery.getProperties().getCorrelationId())
-                    .build();
+            String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
+            AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder().correlationId(delivery.getProperties().getCorrelationId()).build();
 
             try {
-                channel.basicPublish(
-                        "",
-                        delivery.getProperties().getReplyTo(),
-                        replyProps,
-                        message.getBytes(StandardCharsets.UTF_8));
+                channel.basicPublish("", delivery.getProperties().getReplyTo(), replyProps, message.getBytes(StandardCharsets.UTF_8));
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
             } catch (IOException e) {
@@ -146,6 +140,7 @@ public class RabbitConnectionCell {
 
     public void close() {
         try {
+            this.channel.close();
             this.conn.close();
         } catch (Exception e) {
             log.warn("connection is closed: {0}", e);
