@@ -38,14 +38,14 @@ public class RedisConnectionCell {
         return false;
     }
 
-    public void close() throws Exception{
+    public void close(){
         try {
             jedis.close();
         } catch (Exception e) {
             log.warn("connection is closed: {0}", e);
         }
     }
-    public boolean isClosed() throws Exception{
+    public boolean isClosed(){
         return !jedis.isConnected();
     }
 }

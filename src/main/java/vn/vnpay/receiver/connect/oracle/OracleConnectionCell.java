@@ -46,7 +46,7 @@ public class OracleConnectionCell {
         return false;
     }
 
-    public void close() throws Exception{
+    public void close() {
         try {
             conn.close();
         } catch (Exception e) {

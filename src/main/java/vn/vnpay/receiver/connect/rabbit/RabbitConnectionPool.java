@@ -74,7 +74,6 @@ public class RabbitConnectionPool {
                     }
                 }
             });
-
         }
         return instancePool;
     }

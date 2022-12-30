@@ -4,26 +4,24 @@ import com.rabbitmq.client.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import vn.vnpay.receiver.error.ErrorCode;
-import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.model.ApiRequest;
+import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.runnable.PushToOracleCallable;
 import vn.vnpay.receiver.runnable.PushToRedisCallable;
 import vn.vnpay.receiver.utils.AppConfigSingleton;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
 import vn.vnpay.receiver.utils.GsonSingleton;
+import vn.vnpay.receiver.utils.TokenUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicReference;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 @Setter
@@ -96,18 +94,23 @@ public class RabbitConnectionCell {
                         break;
                     }
                 } catch (InterruptedException e) {
-                    log.info("{} has InterruptedException: {}", Thread.currentThread().getName(), e.getMessage());
+                    log.error("{} has InterruptedException: {}", Thread.currentThread().getName(), e.getMessage());
                     apiResponse = new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
                 } catch (ExecutionException e) {
-                    log.info("{} has execution error: {}", Thread.currentThread().getName(), e.getMessage());
+                    log.error("{} has execution error: {}", Thread.currentThread().getName(), e.getMessage());
                     apiResponse = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
                 } catch (TimeoutException e) {
-                    log.info("Time execution in core is over 1 minute: ", e);
                     apiResponse = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, apiRequest.getToken());
+                    String token = TokenUtils.generateNewToken();
+                    MDC.put("token", token);
+                    log.error("Time execution in core is over 1 minute: ", e);
+                    MDC.remove("token");
+                    break;
                 }
             }
 
             // send message
+            log.info("rabbit start publishing data");
             String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
             AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder().correlationId(delivery.getProperties().getCorrelationId()).build();
 
@@ -116,7 +119,7 @@ public class RabbitConnectionCell {
 
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                log.error("rabbit fail to publish data: ", e);
             }
         };
 
@@ -125,10 +128,10 @@ public class RabbitConnectionCell {
             }));
 
         } catch (IOException e) {
-            log.error("rabbit fail to receive data: {0}", e);
+            log.error("rabbit fail to consume data: ", e);
         }
 
-        log.info("rabbit finish receiving data");
+        log.info("rabbit finish consuming data");
     }
 
     public boolean isTimeOut() {
