@@ -6,21 +6,11 @@ import lombok.Setter;
 import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
-import vn.vnpay.receiver.error.ErrorCode;
-import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
-import vn.vnpay.receiver.runnable.PushToOracleCallable;
-import vn.vnpay.receiver.runnable.PushToRedisCallable;
-import vn.vnpay.receiver.utils.AppConfigSingleton;
-import vn.vnpay.receiver.utils.ExecutorSingleton;
-import vn.vnpay.receiver.utils.GsonSingleton;
-import vn.vnpay.receiver.utils.TokenUtils;
+import vn.vnpay.receiver.utils.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 
 
@@ -70,44 +60,7 @@ public class RabbitConnectionCell {
             log.info("----");
             log.info("rabbit begin receiving data: {}", json);
 
-            ApiRequest apiRequest = GsonSingleton.getInstance().getGson().fromJson(json, ApiRequest.class);
-            apiResponse = new ApiResponse("00", "success", apiRequest.getToken());
-
-            // set up thread pool
-            ScheduledExecutorService executor = ExecutorSingleton.getInstance().getExecutorService();
-            // add runnable for pushing to redis
-            Future redisFuture = executor.submit(new PushToRedisCallable(apiRequest));
-            // add runnable for pushing to oracle
-            Future oracleFuture = executor.schedule(new PushToOracleCallable(apiRequest), TIME_SLEEP, TimeUnit.MILLISECONDS);
-
-            List<Future> futureList = new ArrayList<>();
-            futureList.add(redisFuture);
-            futureList.add(oracleFuture);
-
-            // concurrency for redis and oracle
-            // redis -> oracle
-            for (Future f : futureList) {
-                try {
-                    ApiResponse response = (ApiResponse) f.get(TIME_OUT, TimeUnit.MILLISECONDS);
-                    if (response != null) {
-                        apiResponse = response;
-                        break;
-                    }
-                } catch (InterruptedException e) {
-                    log.error("{} has InterruptedException: {}", Thread.currentThread().getName(), e.getMessage());
-                    apiResponse = new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
-                } catch (ExecutionException e) {
-                    log.error("{} has execution error: {}", Thread.currentThread().getName(), e.getMessage());
-                    apiResponse = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
-                } catch (TimeoutException e) {
-                    apiResponse = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail: " + e, apiRequest.getToken());
-                    String token = TokenUtils.generateNewToken();
-                    MDC.put("token", token);
-                    log.error("Time execution in core is over 1 minute: ", e);
-                    MDC.remove("token");
-                    break;
-                }
-            }
+            apiResponse = DataUtils.uploadData(json);
 
             // send message
             log.info("rabbit start publishing data");

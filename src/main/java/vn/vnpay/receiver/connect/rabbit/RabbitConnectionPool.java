@@ -94,6 +94,7 @@ public class RabbitConnectionPool {
         }
         thread.start();
         end_time = System.currentTimeMillis();
+        log.info("number of connection created: {}", numOfConnectionCreated);
         log.info("Start Rabbit Connection pool in : {} ms", (end_time - start_time));
     }
 

@@ -2,6 +2,7 @@ package vn.vnpay.receiver.runnable;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionCell;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.error.ErrorCode;
@@ -9,6 +10,7 @@ import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
+import vn.vnpay.receiver.utils.TokenUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -79,7 +81,9 @@ public class PushToOracleCallable implements Callable<ApiResponse> {
         try {
             pushToDatabase();
         } catch (Exception e) {
+            MDC.put("token", TokenUtils.generateNewToken());
             log.error("fail to push to database: ", e);
+            MDC.remove("token");
             response = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
             oracleConnectionPool.releaseConnection(oracleConnectionCell);
         }
