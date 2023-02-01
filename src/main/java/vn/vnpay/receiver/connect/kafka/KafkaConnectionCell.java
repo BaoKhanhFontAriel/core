@@ -3,14 +3,18 @@ package vn.vnpay.receiver.connect.kafka;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.utils.DataUtils;
+import vn.vnpay.receiver.utils.GsonSingleton;
 
 import java.util.Arrays;
 import java.util.Properties;
@@ -24,16 +28,42 @@ public class KafkaConnectionCell {
     private boolean isClosed;
     private ApiResponse apiResponse;
     private KafkaConsumer<String, String> consumer;
-
     private KafkaProducer<String, String> producer;
 
-    public KafkaConnectionCell(Properties consumerProps, Properties producerConfig, String topic, long timeOut) {
-        consumer = new KafkaConsumer<>(consumerProps);
+    private String producerTopic;
 
-        producer = new KafkaProducer<String, String>(producerConfig);
+    public KafkaConnectionCell(Properties consumerProps, Properties producerConfig, String consumerTopic, String producerTopic, long timeOut) {
+        this.consumer = new KafkaConsumer<>(consumerProps);
+        this.producer = new KafkaProducer<>(producerConfig);
+        this.producerTopic = producerTopic;
+        this.consumer.subscribe(Arrays.asList(consumerTopic));
+        log.info("Subscribed to topic " + consumerTopic);
+    }
 
-        consumer.subscribe(Arrays.asList(topic));
-        log.info("Subscribed to topic " + topic);
+    public KafkaConnectionCell() {
+        String consumerTopic = KafkaConnectionPoolConfig.KAFKA_CONSUMER_TOPIC;
+        String producerTopic = KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC;
+        String bootstrapServers="127.0.0.1:9092";
+        String grp_id="khanh-group-3";
+
+
+        Properties consumerProps = new Properties();
+        consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
+        consumerProps.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,   StringDeserializer.class.getName());
+        consumerProps.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());
+        consumerProps.setProperty(ConsumerConfig.GROUP_ID_CONFIG,grp_id);
+        consumerProps.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"latest");
+
+        Properties producerProps = new Properties();
+        producerProps.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        producerProps.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        producerProps.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+
+        this.consumer = new KafkaConsumer<>(consumerProps);
+        this.producer = new KafkaProducer<>(producerProps);
+        this.producerTopic = producerTopic;
+        this.consumer.subscribe(Arrays.asList(consumerTopic));
+        log.info("Subscribed to topic " + consumerTopic);
     }
 
     public void receiveAndSend() {
@@ -41,30 +71,29 @@ public class KafkaConnectionCell {
         // receive message
         // polling
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(100);
-            for (ConsumerRecord<String, String> record : records) {
-                log.info("rabbit begin receiving data: offset = %d, key = %s, value = %s\n",
-                        record.offset(), record.key(), record.value());
-                String stringJson = record.value();
-//                apiResponse = DataUtils.uploadData(stringJson);
+            synchronized (this){
+                ConsumerRecords<String, String> records = consumer.poll(100);
+                for (ConsumerRecord<String, String> record : records) {
+                    log.info("rabbit begin receiving data: offset = {}, key = {}, value = {}\n",
+                            record.offset(), record.key(), record.value());
+                    String stringJson = record.value();
+                    apiResponse = DataUtils.uploadData(stringJson);
+                    String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
+
+                    // send message
+                    log.info("rabbit start publishing data");
+                    ProducerRecord<String, String> producerRecord = new ProducerRecord<>(producerTopic, message);
+                    producer.send(producerRecord, (recordMetadata, e) -> {
+                        if (e == null) {
+                            log.info("Successfully received the details as: Topic = {}, partition = {}, Offset = {}",
+                                    recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
+                        } else {
+                            log.error("Can't produce,getting error", e);
+                        }
+                    });
+                }
             }
         }
-
-        // send message
-//        log.info("rabbit start publishing data");
-//        String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
-//        ProducerRecord<String, String> record = new ProducerRecord<>("reply-topic", message);
-//        producer.send(record, (recordMetadata, e) -> {
-//            if (e == null) {
-//                log.info("Successfully received the details as: \n" +
-//                        "Topic:" + recordMetadata.topic() + "\n" +
-//                        "Partition:" + recordMetadata.partition() + "\n" +
-//                        "Offset" + recordMetadata.offset() + "\n" +
-//                        "Timestamp" + recordMetadata.timestamp());
-//            } else {
-//                log.error("Can't produce,getting error", e);
-//            }
-//        });
     }
 
     public boolean isTimeOut() {

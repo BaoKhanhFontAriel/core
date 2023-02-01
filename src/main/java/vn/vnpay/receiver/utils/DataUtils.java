@@ -22,14 +22,14 @@ public class DataUtils {
         // set up thread pool
         ScheduledExecutorService executor = ExecutorSingleton.getInstance().getExecutorService();
         // add runnable for pushing to redis
-        Future redisFuture = executor.submit(new PushToRedisCallable(apiRequest));
+//        Future redisFuture = executor.submit(new PushToRedisCallable(apiRequest));
         // add runnable for pushing to oracle
         Future oracleFuture = executor.schedule(new PushToOracleCallable(apiRequest),
                 KafkaConnectionPoolConfig.REQUEST_TIME_SLEEP,
                 TimeUnit.MILLISECONDS);
 
         List<Future> futureList = new ArrayList<>();
-        futureList.add(redisFuture);
+//        futureList.add(redisFuture);
         futureList.add(oracleFuture);
 
         // concurrency for redis and oracle
