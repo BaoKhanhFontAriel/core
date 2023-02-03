@@ -55,5 +55,9 @@ public class MainService {
 
         // receive message
         executorSingleton.getExecutorService().submit(new KafkaRunnable());
+        executorSingleton.getExecutorService().submit(new KafkaRunnable());
+        executorSingleton.getExecutorService().submit(new KafkaRunnable());
+
+
     }
 }
