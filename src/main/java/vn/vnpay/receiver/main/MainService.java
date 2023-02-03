@@ -8,9 +8,8 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import vn.vnpay.receiver.connect.kafka.KafkaConnectionCell;
-import vn.vnpay.receiver.connect.kafka.KafkaConnectionPool;
-import vn.vnpay.receiver.connect.kafka.KafkaConnectionPoolConfig;
+import vn.vnpay.receiver.connect.kafka.*;
+import vn.vnpay.receiver.connect.kafka.runnable.KafkaRunnable;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.connect.rabbit.RabbitConnectionPool;
 import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
@@ -30,7 +29,11 @@ public class MainService {
     private static final RabbitConnectionPool rabbitConnectionPool = RabbitConnectionPool.getInstancePool();
     private static final OracleConnectionPool oracleConnectionPool = OracleConnectionPool.getInstancePool();
     private static final RedisConnectionPool redisConnectionPool = RedisConnectionPool.getInstancePool();
-    private static final KafkaConnectionPool kafkaConnectionPool = KafkaConnectionPool.getInstancePool();
+//    private static final KafkaConnectionPool kafkaConnectionPool = KafkaConnectionPool.getInstancePool();
+
+    private static final KafkaConsumerConnectionPool kafkaConsumerConnectionPool = KafkaConsumerConnectionPool.getInstancePool();
+    private static final KafkaProducerConnectionPool kafkaProducerConnectionPool = KafkaProducerConnectionPool.getInstancePool();
+
     private static final ExecutorSingleton executorSingleton = new ExecutorSingleton();
     private static final GsonSingleton gsonSingleton = new GsonSingleton();
 
@@ -39,14 +42,18 @@ public class MainService {
 
         oracleConnectionPool.start();
 //        rabbitConnectionPool.start();
-//        redisConnectionPool.start();
-        kafkaConnectionPool.start();
-
+        redisConnectionPool.start();
+//        kafkaConnectionPool.start();
+        kafkaProducerConnectionPool.start();
+        kafkaProducerConnectionPool.start();
 
 //        RabbitConnectionCell rabbitConnectionCell = rabbitConnectionPool.getConnection();
 //        rabbitConnectionCell.receiveAndSend();
-        KafkaConnectionCell kafkaConnectionCell = kafkaConnectionPool.getConnection();
+//        KafkaConnectionCell kafkaConnectionCell = kafkaConnectionPool.getConnection();
 //        KafkaConnectionCell kafkaConnectionCell = new KafkaConnectionCell();
-        kafkaConnectionCell.receiveAndSend();
+//        kafkaConnectionCell.receiveAndSend();
+
+        // receive message
+        executorSingleton.getExecutorService().submit(new KafkaRunnable());
     }
 }

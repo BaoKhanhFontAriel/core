@@ -10,6 +10,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.errors.WakeupException;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import vn.vnpay.receiver.model.ApiResponse;
@@ -43,16 +44,16 @@ public class KafkaConnectionCell {
     public KafkaConnectionCell() {
         String consumerTopic = KafkaConnectionPoolConfig.KAFKA_CONSUMER_TOPIC;
         String producerTopic = KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC;
-        String bootstrapServers="127.0.0.1:9092";
-        String grp_id="khanh-group-3";
+        String bootstrapServers = KafkaConnectionPoolConfig.KAFKA_SERVER;
+        String grp_id = "khanh-group-3";
 
 
         Properties consumerProps = new Properties();
-        consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
-        consumerProps.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,   StringDeserializer.class.getName());
-        consumerProps.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());
-        consumerProps.setProperty(ConsumerConfig.GROUP_ID_CONFIG,grp_id);
-        consumerProps.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"latest");
+        consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        consumerProps.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProps.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProps.setProperty(ConsumerConfig.GROUP_ID_CONFIG, grp_id);
+        consumerProps.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
         Properties producerProps = new Properties();
         producerProps.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -70,22 +71,22 @@ public class KafkaConnectionCell {
         log.info("----");
         // receive message
         // polling
-        while (true) {
-            synchronized (this){
+        try {
+            while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(100);
                 for (ConsumerRecord<String, String> record : records) {
-                    log.info("rabbit begin receiving data: offset = {}, key = {}, value = {}\n",
+                    log.info("kafka successfully receives data: offset = {}, key = {}, value = {}\n",
                             record.offset(), record.key(), record.value());
                     String stringJson = record.value();
                     apiResponse = DataUtils.uploadData(stringJson);
                     String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
 
                     // send message
-                    log.info("rabbit start publishing data");
+                    log.info("kafka start publishing data");
                     ProducerRecord<String, String> producerRecord = new ProducerRecord<>(producerTopic, message);
                     producer.send(producerRecord, (recordMetadata, e) -> {
                         if (e == null) {
-                            log.info("Successfully received the details as: Topic = {}, partition = {}, Offset = {}",
+                            log.info("kafka successfully sent the details as: Topic = {}, partition = {}, Offset = {}",
                                     recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
                         } else {
                             log.error("Can't produce,getting error", e);
@@ -93,6 +94,8 @@ public class KafkaConnectionCell {
                     });
                 }
             }
+        } catch (WakeupException we) {
+            log.error("consumer cant poll results ", we);
         }
     }
 
@@ -107,6 +110,7 @@ public class KafkaConnectionCell {
         try {
             consumer.close();
             isClosed = true;
+            consumer.wakeup();
         } catch (Exception e) {
             log.warn("connection is closed: {0}", e);
         }

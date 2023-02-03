@@ -1,53 +1,41 @@
 package vn.vnpay.receiver.connect.kafka;
 
 import lombok.Getter;
-import lombok.Setter;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 
 import java.util.Properties;
+import java.util.UUID;
 import java.util.concurrent.LinkedBlockingQueue;
 
 @Getter
-@Setter
-public class KafkaConnectionPool {
-    private static final Logger log = LoggerFactory.getLogger(KafkaConnectionPool.class);
-
-    private LinkedBlockingQueue<KafkaConnectionCell> pool = new LinkedBlockingQueue<>();
-
-    private static KafkaConnectionPool instancePool;
-
+public class KafkaConsumerConnectionPool {
+    private static final Logger log = LoggerFactory.getLogger(KafkaConsumerConnectionPool.class);
+    private LinkedBlockingQueue<KafkaConsumerConnectionCell> pool = new LinkedBlockingQueue<>();
+    private static KafkaConsumerConnectionPool instancePool;
     protected int numOfConnectionCreated = 0;
     protected int maxPoolSize;
     protected int initPoolSize;
     protected int minPoolSize;
     protected long timeOut = 10000;
-
     protected String url;
-
     protected Properties consumerProps;
-    protected Properties producerProps;
     protected String consumerTopic;
-    protected String producerTopic;
     protected Thread thread;
     protected long startTime;
     protected long endTime;
-
-    public synchronized static KafkaConnectionPool getInstancePool() {
+    public synchronized static KafkaConsumerConnectionPool getInstancePool() {
         if (instancePool == null) {
-            instancePool = new KafkaConnectionPool();
+            instancePool = new KafkaConsumerConnectionPool();
             instancePool.initPoolSize = KafkaConnectionPoolConfig.INIT_POOL_SIZE;
             instancePool.maxPoolSize = KafkaConnectionPoolConfig.MAX_POOL_SIZE;
             instancePool.minPoolSize = KafkaConnectionPoolConfig.MIN_POOL_SIZE;
             instancePool.timeOut = KafkaConnectionPoolConfig.TIME_OUT;
             instancePool.thread = new Thread(() -> {
                 while (true) {
-                    for (KafkaConnectionCell connection : instancePool.pool) {
+                    for (KafkaConsumerConnectionCell connection : instancePool.pool) {
                         if (instancePool.numOfConnectionCreated > instancePool.minPoolSize) {
                             if (connection.isTimeOut()) {
                                 try {
@@ -64,9 +52,8 @@ public class KafkaConnectionPool {
             });
 
             instancePool.consumerTopic = KafkaConnectionPoolConfig.KAFKA_CONSUMER_TOPIC;
-            instancePool.producerTopic = KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC;
             String bootstrapServers = KafkaConnectionPoolConfig.KAFKA_SERVER;
-            String grp_id = "kafka";
+            String grp_id = UUID.randomUUID().toString();
 
             instancePool.consumerProps = new Properties();
             instancePool.consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -74,22 +61,18 @@ public class KafkaConnectionPool {
             instancePool.consumerProps.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
             instancePool.consumerProps.setProperty(ConsumerConfig.GROUP_ID_CONFIG, grp_id);
             instancePool.consumerProps.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
-
-            instancePool.producerProps = new Properties();
-            instancePool.producerProps.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-            instancePool.producerProps.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-            instancePool.producerProps.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         }
         return instancePool;
     }
 
     public void start() {
-        log.info("Create Kafka Connection pool........................ ");
+        log.info("Create Kafka Consumer Connection pool........................ ");
         // Load Connection to Pool
         startTime = System.currentTimeMillis();
         try {
             for (int i = 0; i < initPoolSize; i++) {
-                KafkaConnectionCell connection = new KafkaConnectionCell(consumerProps, producerProps, consumerTopic, producerTopic, timeOut);
+                int partiton = pool.size();
+                KafkaConsumerConnectionCell connection = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partiton);
                 pool.put(connection);
                 numOfConnectionCreated++;
             }
@@ -99,14 +82,15 @@ public class KafkaConnectionPool {
         }
         thread.start();
         endTime = System.currentTimeMillis();
-        log.info("Start Kafka Connection pool in : {} ms", (endTime - startTime));
+        log.info("Start  Kafka Consumer Connection pool in : {} ms", (endTime - startTime));
     }
 
-    public synchronized KafkaConnectionCell getConnection() {
+    public synchronized KafkaConsumerConnectionCell getConnection() {
         log.info("begin getting kafka connection!");
-        KafkaConnectionCell connectionWraper = null;
+        KafkaConsumerConnectionCell connectionWraper = null;
         if (pool.size() == 0 && numOfConnectionCreated < maxPoolSize) {
-            connectionWraper = new KafkaConnectionCell(consumerProps, producerProps, consumerTopic, producerTopic, timeOut);
+            int partiton = pool.size();
+            connectionWraper = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partiton);
             try {
                 pool.put(connectionWraper);
             } catch (InterruptedException e) {
@@ -130,12 +114,13 @@ public class KafkaConnectionPool {
     }
 
 
-    public void releaseConnection(KafkaConnectionCell consumer) {
+    public void releaseConnection(KafkaConsumerConnectionCell consumer) {
         log.info("begin releasing connection {}", consumer.toString());
         try {
             if (consumer.isClosed()) {
                 pool.remove(consumer);
-                KafkaConnectionCell connection = new KafkaConnectionCell(consumerProps, producerProps, consumerTopic, producerTopic, timeOut);
+                int partiton = pool.size();
+                KafkaConsumerConnectionCell connection = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partiton);
                 pool.put(connection);
             } else {
                 pool.put(consumer);
