@@ -1,26 +1,25 @@
 package vn.vnpay.receiver.main;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.NewPartitions;
 import vn.vnpay.receiver.connect.kafka.*;
-import vn.vnpay.receiver.connect.kafka.runnable.KafkaRunnable;
+import vn.vnpay.receiver.connect.kafka.runnable.KafkaConsumerCallable;
+import vn.vnpay.receiver.connect.kafka.runnable.KafkaProducerRunner;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.connect.rabbit.RabbitConnectionPool;
 import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
+import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.thread.ShutdownThread;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
 import vn.vnpay.receiver.utils.GsonSingleton;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeoutException;
 
 
@@ -30,9 +29,6 @@ public class MainService {
     private static final OracleConnectionPool oracleConnectionPool = OracleConnectionPool.getInstancePool();
     private static final RedisConnectionPool redisConnectionPool = RedisConnectionPool.getInstancePool();
 //    private static final KafkaConnectionPool kafkaConnectionPool = KafkaConnectionPool.getInstancePool();
-
-    private static final KafkaConsumerConnectionPool kafkaConsumerConnectionPool = KafkaConsumerConnectionPool.getInstancePool();
-    private static final KafkaProducerConnectionPool kafkaProducerConnectionPool = KafkaProducerConnectionPool.getInstancePool();
 
     private static final ExecutorSingleton executorSingleton = new ExecutorSingleton();
     private static final GsonSingleton gsonSingleton = new GsonSingleton();
@@ -44,8 +40,8 @@ public class MainService {
 //        rabbitConnectionPool.start();
         redisConnectionPool.start();
 //        kafkaConnectionPool.start();
-        kafkaProducerConnectionPool.start();
-        kafkaProducerConnectionPool.start();
+        KafkaProducerConnectionPool.getInstancePool().start();
+        KafkaConsumerConnectionPool.getInstancePool().start();
 
 //        RabbitConnectionCell rabbitConnectionCell = rabbitConnectionPool.getConnection();
 //        rabbitConnectionCell.receiveAndSend();
@@ -53,11 +49,29 @@ public class MainService {
 //        KafkaConnectionCell kafkaConnectionCell = new KafkaConnectionCell();
 //        kafkaConnectionCell.receiveAndSend();
 
+//        //create partition
+        Properties props = new Properties();
+        props.put("bootstrap.servers","localhost:29092");
+        AdminClient adminClient = AdminClient.create(props);
+        Map<String, NewPartitions> newPartitionSet = new HashMap<>();
+        newPartitionSet.put(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, NewPartitions.increaseTo(5));
+        adminClient.createPartitions(newPartitionSet);
+        adminClient.close();
+
         // receive message
-        executorSingleton.getExecutorService().submit(new KafkaRunnable());
-        executorSingleton.getExecutorService().submit(new KafkaRunnable());
-        executorSingleton.getExecutorService().submit(new KafkaRunnable());
+        receiveAndSend();
+    }
 
+    public static void receiveAndSend() {
+        String message = null;
+        ApiResponse respsonse = null;
+        Future future = ExecutorSingleton.getInstance().getExecutorService().submit(new KafkaConsumerCallable());
+        try {
+            respsonse = (ApiResponse) future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        }
 
+        ExecutorSingleton.getInstance().getExecutorService().submit(new KafkaProducerRunner(respsonse));
     }
 }

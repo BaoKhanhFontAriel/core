@@ -16,7 +16,6 @@ import vn.vnpay.receiver.utils.GsonSingleton;
 
 @Slf4j
 public class KafkaRunnable implements Runnable{
-    private volatile String response;
     @Override
     public void run() {
         receiveAndSend();
@@ -27,7 +26,7 @@ public class KafkaRunnable implements Runnable{
         KafkaConsumerConnectionCell consumerCell = KafkaConsumerConnectionPool.getInstancePool().getConnection();
         KafkaProducerConnectionCell producerCell = KafkaProducerConnectionPool.getInstancePool().getConnection();
         KafkaConsumer<String,String> consumer = consumerCell.getConsumer();
-        KafkaProducer<String, String> producer = producerCell.getProducer();
+        KafkaProducer<String, ApiResponse> producer = producerCell.getProducer();
 
 
         // receive message
@@ -39,11 +38,10 @@ public class KafkaRunnable implements Runnable{
                             record.offset(), record.key(), record.value());
                     String stringJson = record.value();
                     ApiResponse apiResponse = DataUtils.uploadData(stringJson);
-                    response = GsonSingleton.getInstance().getGson().toJson(apiResponse);
 
                     // send message
-                    ProducerRecord<String, String> producerRecord =
-                            new ProducerRecord<>(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, response);
+                    ProducerRecord<String, ApiResponse> producerRecord =
+                            new ProducerRecord<>(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, apiResponse);
                     producer.send(producerRecord, (recordMetadata, e) -> {
                         if (e == null) {
                             log.info("kafka successfully sent the details as: Topic = {}, partition = {}, Offset = {}",

@@ -30,8 +30,9 @@ public class KafkaConsumerConnectionCell {
 
     public KafkaConsumerConnectionCell(Properties consumerProps, String consumerTopic, long timeOut, int partition) {
         this.consumer = new KafkaConsumer<>(consumerProps);
-        TopicPartition tp = new TopicPartition(consumerTopic, partition);
-        this.consumer.assign(Arrays.asList(tp));
+//        TopicPartition tp = new TopicPartition(consumerTopic, partition);
+        this.consumer.subscribe(Arrays.asList(consumerTopic));
+        log.info("create consumer {} - partition {}", consumer.groupMetadata().groupId(), consumer.assignment());
     }
 
 

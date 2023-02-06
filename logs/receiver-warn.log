@@ -475,3 +475,12 @@ Caused by: java.io.IOException: An existing connection was forcibly closed by th
 	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:73)
 	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:1982)
 	... 5 common frames omitted
+2023-02-06 09:19:43,892                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionPool.lambda$getInstancePool$0(KafkaConsumerConnectionPool.java:42)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionPool$$Lambda$14/1511785794.run(Unknown Source)
+	at java.lang.Thread.run(Thread.java:745)

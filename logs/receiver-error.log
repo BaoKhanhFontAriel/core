@@ -8329,3 +8329,345 @@ Caused by: java.lang.NumberFormatException: For input string: "200000a"
 	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.json.JSONObject.getInt(JSONObject.java:764)
 	... 9 common frames omitted
+2023-02-06 08:52:11,081                      call:85   - [YHEcCac53WI6aDWAt8sLUhjeNsPSwYLH] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:52:11,081                      call:85   - [I3JzdP-M6KzEL9XaIki0QY3JmHGsqiWa] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:52:11,081                      call:85   - [lIlrToBw5rLmMxy6hz4zzl-5IqjiVEmG] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:52:59,771                      call:85   - [ploYs-YZ4SlL9SIA_Z596KHLhp9alb2I] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:52:59,771                      call:85   - [RVXbXBY0S68mtfJLQVeywpRo6-Pdd-AG] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:52:59,771                      call:85   - [foEcb-nULQ7bpJlXYVMo6aM4sYtmM2am] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:53:00,565                      call:85   - [g6dmTRsjgdkyFN_hCcy2J_jnGvEC6NVT] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:53:00,565                      call:85   - [qv05P031L-Ujv4IfAtFdisDfD-9oz5lN] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:53:00,565                      call:85   - [29lHM9Y74IAOgh9erZau0H9r1wTG7lhd] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:46,740                      call:85   - [tRSBOfdcwcuxBHdKP_JHV8WDKWDkWtau] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:46,740                      call:85   - [G4Bs1Q69OoJCD470hHJV9T6jNIAxqCna] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:46,740                      call:85   - [FaaqqCDbJhPI5P7m6XNPnlPqee099nXL] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:47,657                      call:85   - [HJp7hznfRf_p0QsHGL_MmJo1Bs2y3q-W] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:47,657                      call:85   - [mRXVi-QdCsHE1zRVz9xHM0L_ktWQ2Xkl] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:47,657                      call:85   - [5oj5q8l019ylVo0qFpXiVsSGHMFvhsIP] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:57,570                      call:85   - [PArqBI1ZcPaM0Li6ux2DlZSFGHR0SDnX] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:57,570                      call:85   - [fbHlQ-Mf2xH_PSZnLlrTLNS8SCM_dnR0] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted
+2023-02-06 08:56:57,570                      call:85   - [rOS5U2HfSx2VYeZclbrq5iEfluYzOM09] - fail to push to database:  - e.PushToOracleCallable 
+org.json.JSONException: JSONObject["amount"] is not a int.
+	at org.json.JSONObject.wrongValueFormatException(JSONObject.java:2701)
+	at org.json.JSONObject.getInt(JSONObject.java:766)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.pushToDatabase(PushToOracleCallable.java:45)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:82)
+	at vn.vnpay.receiver.runnable.PushToOracleCallable.call(PushToOracleCallable.java:24)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NumberFormatException: For input string: "200000a"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at org.json.JSONObject.getInt(JSONObject.java:764)
+	... 9 common frames omitted

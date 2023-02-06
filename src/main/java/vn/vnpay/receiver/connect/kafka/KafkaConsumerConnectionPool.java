@@ -5,9 +5,13 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import vn.vnpay.receiver.connect.kafka.runnable.KafkaConsumerCallable;
+import vn.vnpay.receiver.connect.kafka.runnable.KafkaProducerRunner;
+import vn.vnpay.receiver.utils.ExecutorSingleton;
 
 import java.util.Properties;
-import java.util.UUID;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 
 @Getter
@@ -26,6 +30,7 @@ public class KafkaConsumerConnectionPool {
     protected Thread thread;
     protected long startTime;
     protected long endTime;
+
     public synchronized static KafkaConsumerConnectionPool getInstancePool() {
         if (instancePool == null) {
             instancePool = new KafkaConsumerConnectionPool();
@@ -53,7 +58,7 @@ public class KafkaConsumerConnectionPool {
 
             instancePool.consumerTopic = KafkaConnectionPoolConfig.KAFKA_CONSUMER_TOPIC;
             String bootstrapServers = KafkaConnectionPoolConfig.KAFKA_SERVER;
-            String grp_id = UUID.randomUUID().toString();
+            String grp_id = "core-consumer";
 
             instancePool.consumerProps = new Properties();
             instancePool.consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -65,14 +70,18 @@ public class KafkaConsumerConnectionPool {
         return instancePool;
     }
 
+    public void receive() {
+        ExecutorSingleton.getInstance().getExecutorService().submit(new KafkaConsumerCallable());
+    }
+
     public void start() {
         log.info("Create Kafka Consumer Connection pool........................ ");
         // Load Connection to Pool
         startTime = System.currentTimeMillis();
         try {
             for (int i = 0; i < initPoolSize; i++) {
-                int partiton = pool.size();
-                KafkaConsumerConnectionCell connection = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partiton);
+                int partition = numOfConnectionCreated;
+                KafkaConsumerConnectionCell connection = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partition);
                 pool.put(connection);
                 numOfConnectionCreated++;
             }
@@ -80,17 +89,17 @@ public class KafkaConsumerConnectionPool {
             log.warn("[Message : can not start connection pool] - [Connection pool : {}] - " + "[Exception : {}]",
                     this.toString(), e);
         }
-        thread.start();
+//        thread.start();
         endTime = System.currentTimeMillis();
         log.info("Start  Kafka Consumer Connection pool in : {} ms", (endTime - startTime));
     }
 
     public synchronized KafkaConsumerConnectionCell getConnection() {
-        log.info("begin getting kafka connection!");
+        log.info("begin getting kafka consumer connection!");
         KafkaConsumerConnectionCell connectionWraper = null;
         if (pool.size() == 0 && numOfConnectionCreated < maxPoolSize) {
-            int partiton = pool.size();
-            connectionWraper = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partiton);
+            int partition = numOfConnectionCreated;
+            connectionWraper = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partition);
             try {
                 pool.put(connectionWraper);
             } catch (InterruptedException e) {
@@ -109,7 +118,7 @@ public class KafkaConsumerConnectionPool {
             e.printStackTrace();
         }
         connectionWraper.setRelaxTime(System.currentTimeMillis());
-        log.info("finish getting rabbit connection, ");
+        log.info("finish getting kafka consumer connection, ");
         return connectionWraper;
     }
 
