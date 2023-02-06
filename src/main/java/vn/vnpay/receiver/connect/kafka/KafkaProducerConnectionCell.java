@@ -28,7 +28,7 @@ public class KafkaProducerConnectionCell {
     private long timeOut;
     private boolean isClosed;
     private ApiResponse apiResponse;
-    private KafkaProducer<String, ApiResponse> producer;
+    private KafkaProducer<String, String> producer;
 
     private String producerTopic;
 

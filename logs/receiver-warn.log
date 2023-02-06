@@ -484,3 +484,13 @@ java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-t
 	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionPool.lambda$getInstancePool$0(KafkaConsumerConnectionPool.java:42)
 	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionPool$$Lambda$14/1511785794.run(Unknown Source)
 	at java.lang.Thread.run(Thread.java:745)
+2023-02-06 22:47:28,159                     close:53   - [] - connection is closed: {0} - e.OracleConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.oracle.OracleConnectionCell.close(OracleConnectionCell.java:51)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:24)
+2023-02-06 22:47:28,160                     close:53   - [] - connection is closed: {0} - e.OracleConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.oracle.OracleConnectionCell.close(OracleConnectionCell.java:51)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:24)

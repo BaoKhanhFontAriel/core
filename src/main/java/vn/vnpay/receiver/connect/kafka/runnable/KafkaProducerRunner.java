@@ -7,8 +7,7 @@ import vn.vnpay.receiver.connect.kafka.KafkaConnectionPoolConfig;
 import vn.vnpay.receiver.connect.kafka.KafkaProducerConnectionCell;
 import vn.vnpay.receiver.connect.kafka.KafkaProducerConnectionPool;
 import vn.vnpay.receiver.model.ApiResponse;
-
-import java.util.concurrent.Callable;
+import vn.vnpay.receiver.utils.GsonSingleton;
 
 @Slf4j
 public class KafkaProducerRunner implements Runnable {
@@ -21,10 +20,11 @@ public class KafkaProducerRunner implements Runnable {
 
     @Override
     public void run() {
+        log.info("Get Kafka Producer conenction...");
         KafkaProducerConnectionCell producerCell = KafkaProducerConnectionPool.getInstancePool().getConnection();
-        KafkaProducer<String, ApiResponse> producer = producerCell.getProducer();
-
-        ProducerRecord<String, ApiResponse> record = new ProducerRecord<>(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, message);
+        String res = GsonSingleton.getInstance().getGson().toJson(message);
+        KafkaProducer<String, String> producer = producerCell.getProducer();
+        ProducerRecord<String, String> record = new ProducerRecord<>(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, res);
         producer.send(record, (recordMetadata, e) -> {
             if (e == null) {
                 log.info("Kafka producer successfully send record ot topic {} - partition {}",

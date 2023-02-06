@@ -36,7 +36,7 @@ public class MainService {
     public static void main(String[] args) throws IOException, TimeoutException {
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
 
-        oracleConnectionPool.start();
+//        oracleConnectionPool.start();
 //        rabbitConnectionPool.start();
         redisConnectionPool.start();
 //        kafkaConnectionPool.start();
