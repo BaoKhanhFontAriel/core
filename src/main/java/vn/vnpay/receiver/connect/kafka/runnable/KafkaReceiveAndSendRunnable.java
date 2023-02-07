@@ -6,8 +6,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.errors.WakeupException;
-import org.apache.kafka.common.protocol.types.Field;
 import vn.vnpay.receiver.connect.kafka.*;
 import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.utils.DataUtils;
@@ -15,14 +13,14 @@ import vn.vnpay.receiver.utils.GsonSingleton;
 
 
 @Slf4j
-public class KafkaRunnable implements Runnable{
+public class KafkaReceiveAndSendRunnable implements Runnable{
     @Override
     public void run() {
         receiveAndSend();
     }
 
     public void receiveAndSend() {
-        log.info("kafka consumer receive message");
+        log.info("start receive and send runnable...........");
         KafkaConsumerConnectionCell consumerCell = KafkaConsumerConnectionPool.getInstancePool().getConnection();
         KafkaProducerConnectionCell producerCell = KafkaProducerConnectionPool.getInstancePool().getConnection();
         KafkaConsumer<String,String> consumer = consumerCell.getConsumer();
@@ -39,6 +37,7 @@ public class KafkaRunnable implements Runnable{
                     String stringJson = record.value();
                     ApiResponse apiResponse = DataUtils.uploadData(stringJson);
                     String res = GsonSingleton.getInstance().getGson().toJson(apiResponse);
+//                    String res = "hello from core !";
 
                     // send message
                     ProducerRecord<String, String> producerRecord =
@@ -51,6 +50,8 @@ public class KafkaRunnable implements Runnable{
                             log.error("Can't produce,getting error", e);
                         }
                     });
+
+//                    return;
                 }
             }
         }
@@ -58,7 +59,8 @@ public class KafkaRunnable implements Runnable{
             log.error("Unsuccessfully poll ", e);
         }
         finally {
-
+            KafkaConsumerConnectionPool.getInstancePool().releaseConnection(consumerCell);
+            KafkaProducerConnectionPool.getInstancePool().releaseConnection(producerCell);
         }
     }
 }

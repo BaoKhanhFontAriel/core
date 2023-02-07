@@ -83,7 +83,7 @@ public class KafkaProducerConnectionPool {
     }
 
     public synchronized KafkaProducerConnectionCell getConnection() {
-        log.info("begin getting kafka connection!");
+        log.info("Get kafka production connection.............");
         KafkaProducerConnectionCell connectionWraper = null;
         if (pool.size() == 0 && numOfConnectionCreated < maxPoolSize) {
             connectionWraper = new KafkaProducerConnectionCell(producerProps, producerTopic, timeOut);
@@ -105,7 +105,6 @@ public class KafkaProducerConnectionPool {
             e.printStackTrace();
         }
         connectionWraper.setRelaxTime(System.currentTimeMillis());
-        log.info("finish getting rabbit connection, ");
         return connectionWraper;
     }
 

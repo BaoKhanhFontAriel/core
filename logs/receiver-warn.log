@@ -494,3 +494,37 @@ java.lang.NullPointerException: null
 	at vn.vnpay.receiver.connect.oracle.OracleConnectionCell.close(OracleConnectionCell.java:51)
 	at java.lang.Iterable.forEach(Iterable.java:75)
 	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:24)
+2023-02-07 13:50:23,101                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketException: Software caused connection abort: socket write error
+	at redis.clients.jedis.Connection.disconnect(Connection.java:221)
+	at redis.clients.jedis.Connection.close(Connection.java:210)
+	at redis.clients.jedis.Jedis.close(Jedis.java:290)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.thread.ShutdownThread$$Lambda$404/398252850.accept(Unknown Source)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+Caused by: java.net.SocketException: Software caused connection abort: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:109)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:153)
+	at redis.clients.jedis.util.RedisOutputStream.flushBuffer(RedisOutputStream.java:57)
+	at redis.clients.jedis.util.RedisOutputStream.flush(RedisOutputStream.java:138)
+	at redis.clients.jedis.Connection.disconnect(Connection.java:217)
+	... 6 common frames omitted
+2023-02-07 13:50:23,102                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketException: Software caused connection abort: socket write error
+	at redis.clients.jedis.Connection.disconnect(Connection.java:221)
+	at redis.clients.jedis.Connection.close(Connection.java:210)
+	at redis.clients.jedis.Jedis.close(Jedis.java:290)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.thread.ShutdownThread$$Lambda$404/398252850.accept(Unknown Source)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+Caused by: java.net.SocketException: Software caused connection abort: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:109)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:153)
+	at redis.clients.jedis.util.RedisOutputStream.flushBuffer(RedisOutputStream.java:57)
+	at redis.clients.jedis.util.RedisOutputStream.flush(RedisOutputStream.java:138)
+	at redis.clients.jedis.Connection.disconnect(Connection.java:217)
+	... 6 common frames omitted

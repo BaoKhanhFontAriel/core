@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewPartitions;
 import vn.vnpay.receiver.connect.kafka.*;
-import vn.vnpay.receiver.connect.kafka.runnable.KafkaConsumerCallable;
 import vn.vnpay.receiver.connect.kafka.runnable.KafkaProducerRunner;
+import vn.vnpay.receiver.connect.kafka.runnable.KafkaReceiveAndSendRunnable;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.connect.rabbit.RabbitConnectionPool;
 import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
@@ -54,24 +54,16 @@ public class MainService {
         props.put("bootstrap.servers","localhost:29092");
         AdminClient adminClient = AdminClient.create(props);
         Map<String, NewPartitions> newPartitionSet = new HashMap<>();
-        newPartitionSet.put(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, NewPartitions.increaseTo(5));
+        newPartitionSet.put(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, NewPartitions.increaseTo(10));
         adminClient.createPartitions(newPartitionSet);
         adminClient.close();
 
         // receive message
-        receiveAndSend();
+            receiveAndSend();
+
     }
 
     public static void receiveAndSend() {
-        String message = null;
-        ApiResponse respsonse = null;
-        Future future = ExecutorSingleton.getInstance().getExecutorService().submit(new KafkaConsumerCallable());
-        try {
-            respsonse = (ApiResponse) future.get();
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
-        }
-
-        ExecutorSingleton.getInstance().getExecutorService().submit(new KafkaProducerRunner(respsonse));
+        ExecutorSingleton.getInstance().getExecutorService().submit(new KafkaReceiveAndSendRunnable());
     }
 }
