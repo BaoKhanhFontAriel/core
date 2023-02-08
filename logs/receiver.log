@@ -5103,3 +5103,34 @@ java.lang.NullPointerException: null
 2023-02-08 19:04:43,410              lambda$run$0:30   - [] - Kafka producer successfully send record ot topic reply-topic - partition null - le.KafkaProducerRunner 
 2023-02-08 20:57:53,848                       run:22   - [] - start shut down hook - .thread.ShutdownThread 
 2023-02-08 20:57:53,976                       run:35   - [] - shut down hook task completed.. - .thread.ShutdownThread 
+2023-02-08 20:58:14,139                    <init>:22   - [] - create new ExecutorServiceSingleton... - tils.ExecutorSingleton 
+2023-02-08 20:58:14,248                     start:62   - [] - Create Reddis Connection pool........................  - is.RedisConnectionPool 
+2023-02-08 20:58:14,336                     start:78   - [] - Start Rabbit Connection pool in : 88 ms - is.RedisConnectionPool 
+2023-02-08 20:58:14,338                     start:67   - [] - Create Kafka Producer Connection pool........................  - ProducerConnectionPool 
+2023-02-08 20:58:16,524                     start:82   - [] - Start Kafka Producer Connection pool in : 2185 ms - ProducerConnectionPool 
+2023-02-08 20:58:16,525                     start:78   - [] - Create Kafka Consumer Connection pool........................  - ConsumerConnectionPool 
+2023-02-08 20:58:16,693                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,701                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,721                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,726                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,733                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,737                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,743                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,755                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,759                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,823                    <init>:35   - [] - create consumer core-consumer - partition [] - ConsumerConnectionCell 
+2023-02-08 20:58:16,823                     start:94   - [] - Start  Kafka Consumer Connection pool in : 298 ms - ConsumerConnectionPool 
+2023-02-08 20:58:17,898                    <init>:22   - [] - create new ExecutorServiceSingleton... - tils.ExecutorSingleton 
+2023-02-08 20:58:17,952             getConnection:98   - [] - begin getting kafka consumer connection! - ConsumerConnectionPool 
+2023-02-08 20:58:17,952             getConnection:121  - [] - finish getting kafka consumer connection,  - ConsumerConnectionPool 
+2023-02-08 20:58:17,952                      call:31   - [] - Get Kafka consumer core-consumer - partition [] - .KafkaConsumerCallable 
+2023-02-08 20:58:22,207                      call:36   - [] - ---- - .KafkaConsumerCallable 
+2023-02-08 20:58:22,209                      call:37   - [] - rabbit begin receiving data: offset = 3, key = null, value = {"token":"kAnhq9Fo4l9yLvRHr3iVIHpVWnL3eQ-r","data":"{\r\n \"userName\": \"NGUY T T HA\",\r\n \"customerName\": \"NGUY T T HA\",\r\n \"tranxId\": \"700056569\",\r\n \"mobileNo\": \"0336371711\",\r\n \"accountNo\": \"4129770000000139\",\r\n \"cusName\": \"NGUY T T HA\",\r\n \"invoiceNo\": \"INV-E3R487X8CYUQVFB4\",\r\n \"amount\": 200000,\r\n \"status\": \"3\",\r\n \"rescode\": \"00\",\r\n \"bankCode\": \"970436\",\r\n \"tranxNote\": \"Tru tien thanh cong, so trace 028977\",\r\n \"tranxDate\": \"20211012171434\",\r\n \"tipAndFee\": \"0\",\r\n \"type\": \"2\",\r\n \"item\": [\r\n  {\r\n   \"note\": \"\",\r\n   \"quantity\": \"1\",\r\n   \"qrInfor\": \"0002010102110216412977000000013952045812530370458037046005HANOI6304CFD9\"\r\n  }\r\n ],\r\n \"qrInfo\": \"{\\\"version\\\":\\\"5.2.3\\\",\\\"PM\\\":\\\"Pixel 2 XL\\\",\\\"OV\\\":\\\"11\\\",\\\"PS\\\":\\\"IS_SAFE\\\",\\\"DT\\\":\\\"ANDROID\\\",\\\"IMEI\\\":\\\"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\\\"}\",\r\n \"orderCode\": \"700056569\",\r\n \"quantity\": \"1\",\r\n \"checkSum\": \"018bdd0b131b6f623bbff42c436b23dd\",\r\n \"qrVersion\": \"2\",\r\n \"mobile\": \"0336371711\",\r\n \"respCode\": \"00\",\r\n \"respDesc\": \"Tru tien thanh cong, so trace 028977\",\r\n \"traceTransfer\": \"028977\",\r\n \"messageType\": \"1\",\r\n \"debitAmount\": \"200000.0\",\r\n \"payDate\": \"20211012171434\",\r\n \"realAmount\": \"200000.0\",\r\n \"promotionCode\": \"\",\r\n \"Url\": \"http://10.20.27.18:8080/QRCodePaymentAPIRest/rest/QrcodePayment/paymentServiceCard\",\r\n \"mobileId\": \"111001655\",\r\n \"clientId\": \"210012299\",\r\n \"device\": \"Pixel 2 XL\",\r\n \"ipAddress\": \"10.22.7.11\",\r\n \"imei\": \"###77fb26dca19ada4b###ffffffff-f15a-3d94-ffff-ffffef05ac4a\",\r\n \"totalAmount\": \"200000.0\",\r\n \"feeAmount\": \"0\",\r\n \"pcTime\": \"171432\",\r\n \"tellerId\": \"5078\",\r\n \"tellerBranch\": \"06800\",\r\n \"typeSource\": \"02\",\r\n \"bankCard\": \"02\"\r\n}"} - .KafkaConsumerCallable 
+2023-02-08 20:58:22,304                      call:45   - [] - push to redis - le.PushToRedisCallable 
+2023-02-08 20:58:22,305               pushToRedis:29   - [] - begin push to jedis - le.PushToRedisCallable 
+2023-02-08 20:58:22,493                       run:23   - [] - Get Kafka Producer conenction... - le.KafkaProducerRunner 
+2023-02-08 20:58:22,494             getConnection:86   - [] - begin getting kafka connection! - ProducerConnectionPool 
+2023-02-08 20:58:22,494             getConnection:108  - [] - finish getting rabbit connection,  - ProducerConnectionPool 
+2023-02-08 20:58:23,080              lambda$run$0:30   - [] - Kafka producer successfully send record ot topic reply-topic - partition null - le.KafkaProducerRunner 
+2023-02-08 21:04:49,878                       run:22   - [] - start shut down hook - .thread.ShutdownThread 
+2023-02-08 21:04:49,920                       run:35   - [] - shut down hook task completed.. - .thread.ShutdownThread 
