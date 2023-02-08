@@ -38,6 +38,7 @@ public class KafkaReceiveAndSendRunnable implements Runnable{
                     ApiResponse apiResponse = DataUtils.uploadData(stringJson);
                     String res = GsonSingleton.getInstance().getGson().toJson(apiResponse);
 //                    String res = "hello from core !";
+                    consumer.commitSync();
 
                     // send message
                     ProducerRecord<String, String> producerRecord =
