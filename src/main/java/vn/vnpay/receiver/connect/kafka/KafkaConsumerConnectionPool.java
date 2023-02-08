@@ -95,7 +95,7 @@ public class KafkaConsumerConnectionPool {
     }
 
     public synchronized KafkaConsumerConnectionCell getConnection() {
-        log.info("begin getting kafka consumer connection!");
+        log.info("Get kafka consumer connection..................");
         KafkaConsumerConnectionCell connectionWraper = null;
         if (pool.size() == 0 && numOfConnectionCreated < maxPoolSize) {
             int partition = numOfConnectionCreated;
@@ -118,7 +118,6 @@ public class KafkaConsumerConnectionPool {
             e.printStackTrace();
         }
         connectionWraper.setRelaxTime(System.currentTimeMillis());
-        log.info("finish getting kafka consumer connection, ");
         return connectionWraper;
     }
 
