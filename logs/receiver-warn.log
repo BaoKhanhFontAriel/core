@@ -494,3 +494,53 @@ java.lang.NullPointerException: null
 	at vn.vnpay.receiver.connect.oracle.OracleConnectionCell.close(OracleConnectionCell.java:51)
 	at java.lang.Iterable.forEach(Iterable.java:75)
 	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:24)
+2023-02-08 18:44:59,482                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:44:59,483                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:44:59,483                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:44:59,485                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:44:59,486                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:46:32,644                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+2023-02-08 18:46:32,644                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+2023-02-08 18:46:32,645                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+2023-02-08 18:46:32,645                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+2023-02-08 18:46:32,645                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
