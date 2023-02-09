@@ -13,6 +13,8 @@ import vn.vnpay.receiver.model.ApiResponse;
 
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
@@ -51,6 +53,8 @@ public class KafkaUtils {
     }
 
     private static volatile String res = null;
+    private static CountDownLatch latch;
+
     public static String receive() {
         log.info("Kafka receive.........");
         for (KafkaConsumerConnectionCell consumerCell : consumerPool.getPool()) {
@@ -68,20 +72,21 @@ public class KafkaUtils {
 
                         ApiResponse apiResponse = DataUtils.uploadData(r.value());
                         res = GsonSingleton.toJson(apiResponse);
-                        return;
+                        latch.countDown();
                     }
                 }
             });
         }
 
-        while (true) {
-            if (res != null) {
-                log.info("return response: {}", res);
-                ExecutorSingleton.shutdownNow();
-                ExecutorSingleton.wakeup();
-                return res;
-            }
+        try {
+            latch.await(1000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            log.info("CountDownLatch is interrupted", e);
         }
+
+        ExecutorSingleton.shutdownNow();
+        ExecutorSingleton.wakeup();
+        return res;
     }
 
     public static void send(String message){

@@ -15,7 +15,6 @@ public class ShutdownThread extends Thread {
     RabbitConnectionPool rabbitConnectionPool = RabbitConnectionPool.getInstancePool();
     OracleConnectionPool oracleConnectionPool = OracleConnectionPool.getInstancePool();
     RedisConnectionPool redisConnectionPool = RedisConnectionPool.getInstancePool();
-    private static final KafkaConnectionPool kafkaConnectionPool = KafkaConnectionPool.getInstancePool();
     private static final KafkaConsumerConnectionPool kafkaConsumerConnectionPool = KafkaConsumerConnectionPool.getInstancePool();
     private static final KafkaProducerConnectionPool kafkaProducerConnectionPool = KafkaProducerConnectionPool.getInstancePool();
     public void run() {
@@ -23,13 +22,11 @@ public class ShutdownThread extends Thread {
         rabbitConnectionPool.getPool().forEach(RabbitConnectionCell::close);
         oracleConnectionPool.getPool().forEach(OracleConnectionCell::close);
         redisConnectionPool.getPool().forEach(RedisConnectionCell::close);
-        kafkaConnectionPool.getPool().forEach(KafkaConnectionCell::close);
         kafkaProducerConnectionPool.getPool().forEach(KafkaProducerConnectionCell::close);
         kafkaConsumerConnectionPool.getPool().forEach(KafkaConsumerConnectionCell::close);
         redisConnectionPool.getPool().clear();
         rabbitConnectionPool.getPool().clear();
         oracleConnectionPool.getPool().clear();
-        kafkaConnectionPool.getPool().clear();
         kafkaProducerConnectionPool.getPool().clear();
         kafkaConsumerConnectionPool.getPool().clear();
         log.info("shut down hook task completed..");
