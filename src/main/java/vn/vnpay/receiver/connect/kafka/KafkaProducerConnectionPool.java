@@ -30,9 +30,9 @@ public class KafkaProducerConnectionPool {
     public synchronized static KafkaProducerConnectionPool getInstancePool() {
         if (instancePool == null) {
             instancePool = new KafkaProducerConnectionPool();
-            instancePool.initPoolSize = KafkaConnectionPoolConfig.INIT_POOL_SIZE;
-            instancePool.maxPoolSize = KafkaConnectionPoolConfig.MAX_POOL_SIZE;
-            instancePool.minPoolSize = KafkaConnectionPoolConfig.MIN_POOL_SIZE;
+            instancePool.initPoolSize = KafkaConnectionPoolConfig.INIT_PRODUCER_POOL_SIZE;
+            instancePool.maxPoolSize = KafkaConnectionPoolConfig.MIN_PRODUCER_POOL_SIZE;
+            instancePool.minPoolSize = KafkaConnectionPoolConfig.MIN_PRODUCER_POOL_SIZE;
             instancePool.timeOut = KafkaConnectionPoolConfig.TIME_OUT;
             instancePool.thread = new Thread(() -> {
                 while (true) {
