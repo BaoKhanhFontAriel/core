@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.NewPartitions;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -14,6 +15,7 @@ import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.utils.DataUtils;
 import vn.vnpay.receiver.utils.GsonSingleton;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -28,11 +30,16 @@ public class KafkaConsumerConnectionCell {
     private ApiResponse apiResponse;
     private KafkaConsumer<String, String> consumer;
 
-    public KafkaConsumerConnectionCell(Properties consumerProps, String consumerTopic, long timeOut, int partition) {
+    public KafkaConsumerConnectionCell(Properties consumerProps, String consumerTopic, long timeOut, int index) {
+
+        String member_id = String.valueOf(index);
+        consumerProps.setProperty(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, member_id);
+
         this.consumer = new KafkaConsumer<>(consumerProps);
-//        TopicPartition tp = new TopicPartition(consumerTopic, partition);
         this.consumer.subscribe(Arrays.asList(consumerTopic));
-        log.info("create consumer {} - partition {} - topic {}", consumer.groupMetadata().groupId(), consumer.assignment(), consumerTopic);
+        this.consumer.poll(Duration.ofMillis(100));
+
+        log.info("create consumer {} - partition {} - topic {}", consumer.groupMetadata().groupInstanceId(), consumer.assignment(), consumerTopic);
     }
 
 

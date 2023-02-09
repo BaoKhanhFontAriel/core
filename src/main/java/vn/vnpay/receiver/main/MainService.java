@@ -4,8 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewPartitions;
 import vn.vnpay.receiver.connect.kafka.*;
-import vn.vnpay.receiver.connect.kafka.runnable.KafkaProducerRunner;
-import vn.vnpay.receiver.connect.kafka.runnable.KafkaReceiveAndSendRunnable;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.connect.rabbit.RabbitConnectionPool;
 import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
@@ -13,6 +11,7 @@ import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.thread.ShutdownThread;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
 import vn.vnpay.receiver.utils.GsonSingleton;
+import vn.vnpay.receiver.utils.KafkaUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -50,20 +49,10 @@ public class MainService {
 //        kafkaConnectionCell.receiveAndSend();
 
 //        //create partition
-        Properties props = new Properties();
-        props.put("bootstrap.servers","localhost:29092");
-        AdminClient adminClient = AdminClient.create(props);
-        Map<String, NewPartitions> newPartitionSet = new HashMap<>();
-        newPartitionSet.put(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, NewPartitions.increaseTo(10));
-        adminClient.createPartitions(newPartitionSet);
-        adminClient.close();
+        KafkaUtils.createNewTopic(KafkaConnectionPoolConfig.KAFKA_CONSUMER_TOPIC, 10, (short) 1);
 
         // receive message
-            receiveAndSend();
+        KafkaUtils.receiveAndSend();
 
-    }
-
-    public static void receiveAndSend() {
-        ExecutorSingleton.getInstance().getExecutorService().submit(new KafkaReceiveAndSendRunnable());
     }
 }

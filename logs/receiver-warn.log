@@ -494,37 +494,853 @@ java.lang.NullPointerException: null
 	at vn.vnpay.receiver.connect.oracle.OracleConnectionCell.close(OracleConnectionCell.java:51)
 	at java.lang.Iterable.forEach(Iterable.java:75)
 	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:24)
-2023-02-07 13:50:23,101                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
-redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketException: Software caused connection abort: socket write error
-	at redis.clients.jedis.Connection.disconnect(Connection.java:221)
-	at redis.clients.jedis.Connection.close(Connection.java:210)
-	at redis.clients.jedis.Jedis.close(Jedis.java:290)
+2023-02-08 18:44:59,482                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
 	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.receiver.thread.ShutdownThread$$Lambda$404/398252850.accept(Unknown Source)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:44:59,483                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:44:59,483                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:44:59,485                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:44:59,486                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at vn.vnpay.receiver.connect.redis.RedisConnectionPool.lambda$getInstancePool$0(RedisConnectionPool.java:45)
+	at java.lang.Thread.run(Thread.java:750)
+2023-02-08 18:46:32,644                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
 	at java.lang.Iterable.forEach(Iterable.java:75)
 	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
-Caused by: java.net.SocketException: Software caused connection abort: socket write error
-	at java.net.SocketOutputStream.socketWrite0(Native Method)
-	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:109)
-	at java.net.SocketOutputStream.write(SocketOutputStream.java:153)
-	at redis.clients.jedis.util.RedisOutputStream.flushBuffer(RedisOutputStream.java:57)
-	at redis.clients.jedis.util.RedisOutputStream.flush(RedisOutputStream.java:138)
-	at redis.clients.jedis.Connection.disconnect(Connection.java:217)
-	... 6 common frames omitted
-2023-02-07 13:50:23,102                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
-redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketException: Software caused connection abort: socket write error
-	at redis.clients.jedis.Connection.disconnect(Connection.java:221)
-	at redis.clients.jedis.Connection.close(Connection.java:210)
-	at redis.clients.jedis.Jedis.close(Jedis.java:290)
+2023-02-08 18:46:32,644                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
 	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
-	at vn.vnpay.receiver.thread.ShutdownThread$$Lambda$404/398252850.accept(Unknown Source)
 	at java.lang.Iterable.forEach(Iterable.java:75)
 	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
-Caused by: java.net.SocketException: Software caused connection abort: socket write error
-	at java.net.SocketOutputStream.socketWrite0(Native Method)
-	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:109)
-	at java.net.SocketOutputStream.write(SocketOutputStream.java:153)
-	at redis.clients.jedis.util.RedisOutputStream.flushBuffer(RedisOutputStream.java:57)
-	at redis.clients.jedis.util.RedisOutputStream.flush(RedisOutputStream.java:138)
-	at redis.clients.jedis.Connection.disconnect(Connection.java:217)
-	... 6 common frames omitted
+2023-02-08 18:46:32,645                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+2023-02-08 18:46:32,645                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+2023-02-08 18:46:32,645                     close:45   - [] - connection is closed: {0} - is.RedisConnectionCell 
+java.lang.NullPointerException: null
+	at vn.vnpay.receiver.connect.redis.RedisConnectionCell.close(RedisConnectionCell.java:43)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:25)
+2023-02-08 21:46:45,717                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,718                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,718                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,718                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,719                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,719                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,719                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,719                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,720                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:46:45,720                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,301                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,303                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,306                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,306                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,306                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,307                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,307                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,307                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,308                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:53:14,308                     close:52   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:49)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:58:17,704                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 21:58:17,713                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:00:39,317                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:00:39,333                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:02:15,529                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:02:15,564                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:03:32,296                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:03:32,337                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:04:29,784                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:04:29,796                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:05:54,890                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:05:54,897                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:06:30,594                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:06:30,598                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:20:33,726                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:20:33,731                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:24:47,123                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:24:47,123                     close:55   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:52)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:26:53,455                     close:57   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:54)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:27:28,535                     close:57   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:54)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:30:24,619                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:30:24,620                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:30:24,620                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:30:24,620                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:30:24,620                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:33:20,781                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:33:20,781                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:33:20,782                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:33:20,782                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:33:20,782                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,857                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,858                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,858                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,859                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,859                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,859                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,859                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,859                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,859                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:37:41,859                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,144                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,146                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,148                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,154                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,155                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,155                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,155                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,155                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,155                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:47:10,156                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,635                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,635                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,636                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,636                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,636                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,636                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,636                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,637                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,637                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:50:33,637                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,038                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,043                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,043                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,043                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,043                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,044                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,046                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,046                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,047                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-08 22:51:33,047                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,422                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,422                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,423                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,423                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,423                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,423                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,423                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,423                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,423                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)
+2023-02-09 00:23:09,423                     close:59   - [] - connection is closed: {0} - ConsumerConnectionCell 
+java.util.ConcurrentModificationException: KafkaConsumer is not safe for multi-threaded access
+	at org.apache.kafka.clients.consumer.KafkaConsumer.acquire(KafkaConsumer.java:2445)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2328)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.close(KafkaConsumer.java:2283)
+	at vn.vnpay.receiver.connect.kafka.KafkaConsumerConnectionCell.close(KafkaConsumerConnectionCell.java:56)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at vn.vnpay.receiver.thread.ShutdownThread.run(ShutdownThread.java:28)

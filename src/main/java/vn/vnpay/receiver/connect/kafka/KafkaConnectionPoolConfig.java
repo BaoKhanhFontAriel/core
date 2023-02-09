@@ -10,6 +10,7 @@ public class KafkaConnectionPoolConfig {
     public static final int REQUEST_TIME_SLEEP = AppConfigSingleton.getInstance().getIntProperty("time.sleep");
     public static final int REQUEST_TIME_OUT = AppConfigSingleton.getInstance().getIntProperty("time.out");
     public static final String KAFKA_CONSUMER_TOPIC = AppConfigSingleton.getInstance().getStringProperty("kafka.topic.consumer");
+    public static final String KAFKA_CONSUMER_GROUP_ID = AppConfigSingleton.getInstance().getStringProperty("kafka.consumer.group_id");
     public static final String KAFKA_PRODUCER_TOPIC = AppConfigSingleton.getInstance().getStringProperty("kafka.topic.producer");
     public static final String KAFKA_SERVER = AppConfigSingleton.getInstance().getStringProperty("kafka.server");
 }

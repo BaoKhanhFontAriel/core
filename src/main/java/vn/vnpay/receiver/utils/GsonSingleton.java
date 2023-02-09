@@ -21,4 +21,8 @@ public class GsonSingleton {
         }
         return instance;
     }
+
+    public static String toJson(Object data){
+        return instance.gson.toJson(data);
+    }
 }

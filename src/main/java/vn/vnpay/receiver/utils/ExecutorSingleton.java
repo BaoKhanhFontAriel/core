@@ -30,6 +30,14 @@ public class ExecutorSingleton {
         return instance;
     }
 
+    public static void shutdownNow() {
+        instance.executorService.shutdownNow();
+    }
+
+    public static void wakeup() {
+        instance.executorService = Executors.newScheduledThreadPool(10);
+    }
+
 
     public ScheduledExecutorService getExecutorService() {
         return executorService;
