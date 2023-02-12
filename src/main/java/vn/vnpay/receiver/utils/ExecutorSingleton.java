@@ -38,6 +38,10 @@ public class ExecutorSingleton {
         instance.executorService = Executors.newScheduledThreadPool(10);
     }
 
+    public static void submit(Runnable runnable) {
+        instance.executorService.submit(runnable);
+    }
+
 
     public ScheduledExecutorService getExecutorService() {
         return executorService;

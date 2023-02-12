@@ -6,6 +6,7 @@ import redis.clients.jedis.exceptions.JedisException;
 import vn.vnpay.receiver.connect.redis.RedisConnectionCell;
 import vn.vnpay.receiver.connect.redis.RedisConnectionPool;
 import vn.vnpay.receiver.error.ErrorCode;
+import vn.vnpay.receiver.exceptions.RedisDataProcessingException;
 import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
 
@@ -41,22 +42,30 @@ public class PushToRedisCallable implements Callable<ApiResponse> {
     }
 
     @Override
-    public ApiResponse call() throws InterruptedException, JedisException {
+    public ApiResponse call() throws RedisDataProcessingException, InterruptedException {
         log.info("push to redis");
         ApiResponse apiResponse = null;
+//
+//        try {
+//            pushToRedis();
+//        } catch (JedisException | InterruptedException e) {
+//            log.error("fail to push to redis: ", e);
+//             apiResponse = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
+//        }
+//        finally {
+//            redisConnectionPool.releaseConnection(redisConnectionCell);
+//        }
+
 
         try {
             pushToRedis();
         } catch (JedisException | InterruptedException e) {
-            log.error("fail to push to redis: ", e);
-             apiResponse = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
-
-            try {
-                redisConnectionPool.releaseConnection(redisConnectionCell);
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new RedisDataProcessingException("fail to push to redis: " + e.getMessage());
         }
+        finally {
+            redisConnectionPool.releaseConnection(redisConnectionCell);
+        }
+
         return apiResponse;
     }
 }

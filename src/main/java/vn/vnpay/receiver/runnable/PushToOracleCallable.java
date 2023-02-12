@@ -6,6 +6,7 @@ import org.slf4j.MDC;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionCell;
 import vn.vnpay.receiver.connect.oracle.OracleConnectionPool;
 import vn.vnpay.receiver.error.ErrorCode;
+import vn.vnpay.receiver.exceptions.OracleDataPushException;
 import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
 import org.json.JSONException;
@@ -76,15 +77,25 @@ public class PushToOracleCallable implements Callable<ApiResponse> {
     }
 
     @Override
-    public ApiResponse call() throws SQLException, ParseException, JSONException, InterruptedException {
+    public ApiResponse call() throws OracleDataPushException {
         ApiResponse response = null;
+//        try {
+//            pushToDatabase();
+//        } catch (SQLException | ParseException | JSONException | InterruptedException e) {
+//            MDC.put("token", TokenUtils.generateNewToken());
+//            log.error("fail to push to database: ", e);
+//            MDC.remove("token");
+//            response = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
+//        }
+//        finally {
+//            oracleConnectionPool.releaseConnection(oracleConnectionCell);
+//        }
         try {
             pushToDatabase();
-        } catch (Exception e) {
-            MDC.put("token", TokenUtils.generateNewToken());
+        } catch (SQLException | ParseException | InterruptedException e) {
             log.error("fail to push to database: ", e);
-            MDC.remove("token");
-            response = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
+            throw new OracleDataPushException("fail to push to oracle: " + e.getMessage());
+        } finally {
             oracleConnectionPool.releaseConnection(oracleConnectionCell);
         }
         return response;

@@ -2,19 +2,19 @@ package vn.vnpay.receiver.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.NewPartitions;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.slf4j.MDC;
 import vn.vnpay.receiver.connect.kafka.*;
+import vn.vnpay.receiver.error.ErrorCode;
+import vn.vnpay.receiver.exceptions.OracleDataPushException;
+import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
 
-import java.time.Duration;
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
@@ -22,87 +22,82 @@ public class KafkaUtils {
     private static AtomicReference<LinkedList<String>> responses;
     static KafkaConsumerConnectionPool consumerPool = KafkaConsumerConnectionPool.getInstancePool();
 
-    public static String sendAndReceive(String message) {
-        send(message);
-        String res = receive();
-        return receive();
-    }
+    public static void receiveAndSend() throws Exception {
+        log.info("Kafka receive and send.........");
 
-    public static void receiveAndSend() {
-        log.info("Kafka receive.........");
-        for (KafkaConsumerConnectionCell consumerCell : consumerPool.getPool()) {
-            ExecutorSingleton.getInstance().getExecutorService().submit((Runnable) () ->
-            {
-                while (true) {
-//                    consumerCell.getConsumer().seekToEnd(consumerCell.getConsumer().assignment());
-                    ConsumerRecords<String, String> records = consumerCell.getConsumer().poll(Duration.ofMillis(100));
-                    for (ConsumerRecord<String, String> r : records) {
-                        log.info("----");
-                        log.info("kafka consumer id {} receive data: partition = {}, offset = {}, key = {}, value = {}",
-                                consumerCell.getConsumer().groupMetadata().groupInstanceId(),
-                                r.partition(),
-                                r.offset(), r.key(), r.value());
+        while (true) {
+            String res = receive();
+            if (res != null){
+                ApiRequest apiRequest = GsonSingleton.getInstance().getGson().fromJson(res, ApiRequest.class);
+                ApiResponse response = new ApiResponse("00", "success", apiRequest.getToken());
 
-                        ApiResponse apiResponse = DataUtils.uploadData(r.value());
-                        res = GsonSingleton.toJson(apiResponse);
-                        send(res);
-                    }
+                // oracle, redis
+                MDC.put("token", TokenUtils.generateNewToken());
+                try {
+                    DataUtils.processData(apiRequest);
                 }
-            });
-        }
-    }
-
-    private static volatile String res = null;
-    private static CountDownLatch latch;
-
-    public static String receive() {
-        log.info("Kafka receive.........");
-        for (KafkaConsumerConnectionCell consumerCell : consumerPool.getPool()) {
-            ExecutorSingleton.getInstance().getExecutorService().submit((Runnable) () ->
-            {
-                while (true) {
-//                    consumerCell.getConsumer().seekToEnd(consumerCell.getConsumer().assignment());
-                    ConsumerRecords<String, String> records = consumerCell.getConsumer().poll(Duration.ofMillis(100));
-                    for (ConsumerRecord<String, String> r : records) {
-                        log.info("----");
-                        log.info("kafka consumer id {} receive data: partition = {}, offset = {}, key = {}, value = {}",
-                                consumerCell.getConsumer().groupMetadata().groupInstanceId(),
-                                r.partition(),
-                                r.offset(), r.key(), r.value());
-
-                        ApiResponse apiResponse = DataUtils.uploadData(r.value());
-                        res = GsonSingleton.toJson(apiResponse);
-                        latch.countDown();
-                    }
+                catch (ExecutionException e){
+                    log.error(e.getMessage());
+                    response = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
                 }
-            });
-        }
+                catch (TimeoutException e){
+                    log.error(e.getMessage());
+                    response = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
+                }
+                catch (InterruptedException e){
+                    log.error(e.getMessage());
+                    response = new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
+                }
+                finally {
+                    MDC.remove("token");
+                }
 
-        try {
-            latch.await(1000, TimeUnit.MILLISECONDS);
-        } catch (InterruptedException e) {
-            log.info("CountDownLatch is interrupted", e);
-        }
+                // send message
+                String message = GsonSingleton.toJson(response);
+                log.info("send data is: {} ", message);
 
-        ExecutorSingleton.shutdownNow();
-        ExecutorSingleton.wakeup();
-        return res;
+                if (message != null) {
+                    send(message);
+                }
+//                else {
+//                    send(
+//                            GsonSingleton.toJson(
+//                                    new ApiResponse(ErrorCode.TIME_OUT_ERROR,
+//                                            "Kafka of Core send empty message",
+//                                            apiRequest.getToken())));
+//                }
+
+            }
+        }
     }
 
-    public static void send(String message){
+    public static String receive() throws Exception {
+        log.info("Kafka start receiving.........");
+        return KafkaConsumerConnectionPool.getRecord();
+    }
+
+    public static void send(String message) throws Exception {
         log.info("Kafka send {}.........", message);
         KafkaProducerConnectionCell producerCell = KafkaProducerConnectionPool.getInstancePool().getConnection();
         KafkaProducer<String, String> producer = producerCell.getProducer();
         // send message
+
         ProducerRecord<String, String> record = new ProducerRecord<>(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, message);
-        producer.send(record, (recordMetadata, e) -> {
-            if (e == null) {
-                log.info("Kafka producer successfully send record as: Topic = {}, partition = {}, Offset = {}",
-                        recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
-            } else {
-                log.error("Can't produce,getting error", e);
-            }
-        });
+
+        try {
+            producer.send(record, (recordMetadata, e) -> {
+                if (e == null) {
+                    log.info("Kafka producer successfully send record as: Topic = {}, partition = {}, Offset = {}",
+                            recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
+
+                } else {
+                    log.error("Can't produce,getting error", e);
+                }
+            });
+        } catch (Exception e) {
+            throw new Exception("Kafka can not produce message");
+        }
+
 
         KafkaProducerConnectionPool.getInstancePool().releaseConnection(producerCell);
     }
@@ -115,10 +110,6 @@ public class KafkaUtils {
 
         NewTopic newTopic = new NewTopic(topic, partition, replica);
         adminClient.createTopics(Arrays.asList(newTopic));
-
-//        Map<String, NewPartitions> newPartitionSet = new HashMap<>();
-//        newPartitionSet.put(topic, NewPartitions.increaseTo(partition));
-//        adminClient.createPartitions(newPartitionSet);
 
         adminClient.close();
     }

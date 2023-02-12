@@ -18,6 +18,7 @@ import vn.vnpay.receiver.utils.GsonSingleton;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 
 @Slf4j
@@ -37,8 +38,6 @@ public class KafkaConsumerConnectionCell {
 
         this.consumer = new KafkaConsumer<>(consumerProps);
         this.consumer.subscribe(Arrays.asList(consumerTopic));
-        this.consumer.poll(Duration.ofMillis(100));
-
         log.info("create consumer {} - partition {} - topic {}", consumer.groupMetadata().groupInstanceId(), consumer.assignment(), consumerTopic);
     }
 
@@ -58,5 +57,9 @@ public class KafkaConsumerConnectionCell {
         } catch (Exception e) {
             log.warn("connection is closed: {0}", e);
         }
+    }
+
+    public ConsumerRecords<String, String> poll(Duration ofMillis) {
+        return consumer.poll(ofMillis);
     }
 }
