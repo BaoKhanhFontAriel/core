@@ -2,14 +2,22 @@ package vn.vnpay.receiver.connect.kafka;
 
 import lombok.Getter;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import vn.vnpay.receiver.error.ErrorCode;
+import vn.vnpay.receiver.model.ApiResponse;
 import vn.vnpay.receiver.utils.ExecutorSingleton;
+import vn.vnpay.receiver.utils.GsonSingleton;
 
 import java.time.Duration;
 import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Getter
 public class KafkaConsumerConnectionPool {
@@ -27,6 +35,8 @@ public class KafkaConsumerConnectionPool {
     protected Thread thread;
     protected long startTime;
     protected long endTime;
+    private static AtomicReference<String> res;
+    private static CountDownLatch latch;
 
     public synchronized static KafkaConsumerConnectionPool getInstancePool() {
         if (instancePool == null) {
@@ -92,48 +102,42 @@ public class KafkaConsumerConnectionPool {
         log.info("Start  Kafka Consumer Connection pool in : {} ms", (endTime - startTime));
     }
 
-//    public synchronized KafkaConsumerConnectionCell getConnection() {
-//        log.info("Get kafka consumer connection..................");
-//        KafkaConsumerConnectionCell connectionWraper = null;
-//        if (pool.size() == 0 && numOfConnectionCreated < maxPoolSize) {
-//            int partition = numOfConnectionCreated;
-//            connectionWraper = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partition);
-//            try {
-//                pool.put(connectionWraper);
-//            } catch (InterruptedException e) {
-//                log.warn("Can not PUT Connection to Pool, Current Poll size = " + pool.size()
-//                        + " , Number Connection : " + numOfConnectionCreated, e);
-//                e.printStackTrace();
-//            }
-//            numOfConnectionCreated++;
-//        }
-//
-//        try {
-//            connectionWraper = pool.take();
-//        } catch (InterruptedException e) {
-//            log.warn("Can not GET Connection from Pool, Current Poll size = " + pool.size()
-//                    + " , Number Connection : " + numOfConnectionCreated);
-//            e.printStackTrace();
-//        }
-//        connectionWraper.setRelaxTime(System.currentTimeMillis());
-//        return connectionWraper;
-//    }
+    public static void startPoolPolling() {
+        log.info("Start Kafka consumer pool polling.........");
+        for (KafkaConsumerConnectionCell consumerCell : instancePool.pool) {
+            log.info("consumer {} start polling", consumerCell.getConsumer().groupMetadata().groupInstanceId());
+            ExecutorSingleton.submit((Runnable) () ->
+            {
+                while (true) {
+                    ConsumerRecords<String, String> records = consumerCell.poll(Duration.ofMillis(100));
+                    for (ConsumerRecord<String, String> r : records) {
+                        log.info("----");
+                        log.info("kafka consumer id {} receive data: partition = {}, offset = {}, key = {}, value = {}",
+                                consumerCell.getConsumer().groupMetadata().groupInstanceId(),
+                                r.partition(),
+                                r.offset(), r.key(), r.value());
+                        res.set(r.value());
+                        latch.countDown();
+                        log.info("latch count after set res {}", latch.getCount());
+                    }
+                }//
+            });
+        }
+    }
 
+    public static String getRecord() throws Exception {
+        log.info("Get Kafka Consumer pool record.......");
+        latch = new CountDownLatch(1);
+        res = new AtomicReference<>();
 
-//    public void releaseConnection(KafkaConsumerConnectionCell consumer) {
-//        log.info("begin releasing connection {}", consumer.toString());
-//        try {
-//            if (consumer.isClosed()) {
-//                pool.remove(consumer);
-//                int partiton = pool.size();
-//                KafkaConsumerConnectionCell connection = new KafkaConsumerConnectionCell(consumerProps, consumerTopic, timeOut, partiton);
-//                pool.put(connection);
-//            } else {
-//                pool.put(consumer);
-//            }
-//            log.info("successfully release connection {}", consumer.toString());
-//        } catch (Exception e) {
-//            log.error("Connection : " + consumer.toString(), e);
-//        }
-//    }
+        try {
+            latch.await(2000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            log.info("Kafka consumes is time out", e);
+            throw new Exception("Kafka consumes is time out");
+        }
+
+        return res.get();
+    }
 }

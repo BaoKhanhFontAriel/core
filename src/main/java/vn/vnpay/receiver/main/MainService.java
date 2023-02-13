@@ -26,21 +26,21 @@ import java.util.concurrent.TimeoutException;
 public class MainService {
     private static final RabbitConnectionPool rabbitConnectionPool = RabbitConnectionPool.getInstancePool();
     private static final OracleConnectionPool oracleConnectionPool = OracleConnectionPool.getInstancePool();
-    private static final RedisConnectionPool redisConnectionPool = RedisConnectionPool.getInstancePool();
 //    private static final KafkaConnectionPool kafkaConnectionPool = KafkaConnectionPool.getInstancePool();
 
     private static final ExecutorSingleton executorSingleton = new ExecutorSingleton();
     private static final GsonSingleton gsonSingleton = new GsonSingleton();
 
-    public static void main(String[] args) throws IOException, TimeoutException {
+    public static void main(String[] args) throws Exception {
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
+        ExecutorSingleton.getInstance();
 
 //        oracleConnectionPool.start();
 //        rabbitConnectionPool.start();
-        redisConnectionPool.start();
-//        kafkaConnectionPool.start();
+        RedisConnectionPool.getInstancePool().start();
         KafkaProducerConnectionPool.getInstancePool().start();
         KafkaConsumerConnectionPool.getInstancePool().start();
+        KafkaConsumerConnectionPool.startPoolPolling();
 
 //        RabbitConnectionCell rabbitConnectionCell = rabbitConnectionPool.getConnection();
 //        rabbitConnectionCell.receiveAndSend();

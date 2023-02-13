@@ -52,40 +52,40 @@ public class RabbitConnectionCell {
         }
     }
 
-    public void receiveAndSend() {
-        // do when server receive request
-        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-            String json = new String(delivery.getBody(), "UTF-8");
-
-            log.info("----");
-            log.info("rabbit begin receiving data: {}", json);
-
-            apiResponse = DataUtils.uploadData(json);
-
-            // send message
-            log.info("rabbit start publishing data");
-            String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
-            AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder().correlationId(delivery.getProperties().getCorrelationId()).build();
-
-            try {
-                channel.basicPublish("", delivery.getProperties().getReplyTo(), replyProps, message.getBytes(StandardCharsets.UTF_8));
-
-                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
-            } catch (IOException e) {
-                log.error("rabbit fail to publish data: ", e);
-            }
-        };
-
-        try {
-            channel.basicConsume(queueName, false, deliverCallback, (consumerTag -> {
-            }));
-
-        } catch (IOException e) {
-            log.error("rabbit fail to consume data: ", e);
-        }
-
-        log.info("rabbit finish consuming data");
-    }
+//    public void receiveAndSend() {
+//        // do when server receive request
+//        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+//            String json = new String(delivery.getBody(), "UTF-8");
+//
+//            log.info("----");
+//            log.info("rabbit begin receiving data: {}", json);
+//
+//            apiResponse = DataUtils.processData(json);
+//
+//            // send message
+//            log.info("rabbit start publishing data");
+//            String message = GsonSingleton.getInstance().getGson().toJson(apiResponse);
+//            AMQP.BasicProperties replyProps = new AMQP.BasicProperties.Builder().correlationId(delivery.getProperties().getCorrelationId()).build();
+//
+//            try {
+//                channel.basicPublish("", delivery.getProperties().getReplyTo(), replyProps, message.getBytes(StandardCharsets.UTF_8));
+//
+//                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+//            } catch (IOException e) {
+//                log.error("rabbit fail to publish data: ", e);
+//            }
+//        };
+//
+//        try {
+//            channel.basicConsume(queueName, false, deliverCallback, (consumerTag -> {
+//            }));
+//
+//        } catch (IOException e) {
+//            log.error("rabbit fail to consume data: ", e);
+//        }
+//
+//        log.info("rabbit finish consuming data");
+//    }
 
     public boolean isTimeOut() {
         if (System.currentTimeMillis() - this.relaxTime > this.timeOut) {
