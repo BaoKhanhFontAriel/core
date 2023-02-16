@@ -3,14 +3,13 @@ package vn.vnpay.receiver.utils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.MDC;
 import vn.vnpay.receiver.connect.kafka.*;
 import vn.vnpay.receiver.error.ErrorCode;
-import vn.vnpay.receiver.exceptions.OracleDataPushException;
 import vn.vnpay.receiver.model.ApiRequest;
 import vn.vnpay.receiver.model.ApiResponse;
+import vn.vnpay.receiver.model.PaymentRequest;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -19,15 +18,12 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 public class KafkaUtils {
-    private static AtomicReference<LinkedList<String>> responses;
-    static KafkaConsumerConnectionPool consumerPool = KafkaConsumerConnectionPool.getInstancePool();
-
     public static void receiveAndSend() throws Exception {
         log.info("Kafka receive and send.........");
 
         while (true) {
             String res = receive();
-            if (res != null){
+            if (res != null) {
                 ApiRequest apiRequest = GsonSingleton.getInstance().getGson().fromJson(res, ApiRequest.class);
                 ApiResponse response = new ApiResponse("00", "success", apiRequest.getToken());
 
@@ -35,54 +31,56 @@ public class KafkaUtils {
                 MDC.put("token", TokenUtils.generateNewToken());
                 try {
                     DataUtils.processData(apiRequest);
-                }
-                catch (ExecutionException e){
+                } catch (ExecutionException e) {
                     log.error(e.getMessage());
                     response = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
-                }
-                catch (TimeoutException e){
+                } catch (TimeoutException e) {
                     log.error(e.getMessage());
                     response = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
-                }
-                catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     log.error(e.getMessage());
                     response = new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
-                }
-                finally {
+                } finally {
                     MDC.remove("token");
                 }
 
                 // send message
                 String message = GsonSingleton.toJson(response);
                 log.info("send data is: {} ", message);
+                send(message);
+            }
+        }
+    }
 
-                if (message != null) {
-                    send(message);
-                }
-//                else {
-//                    send(
-//                            GsonSingleton.toJson(
-//                                    new ApiResponse(ErrorCode.TIME_OUT_ERROR,
-//                                            "Kafka of Core send empty message",
-//                                            apiRequest.getToken())));
-//                }
+    public static void receiveAndSendPayment() throws Exception {
+        log.info("Kafka receive and send.........");
 
+        while (true) {
+            String res = receive();
+            if (res != null) {
+                PaymentRequest paymentRequest = GsonSingleton.getInstance().getGson().fromJson(res, PaymentRequest.class);
+                ApiResponse response = new ApiResponse("00", "success", paymentRequest.getRequestid());
+
+                // send message
+                String message = GsonSingleton.toJson(response);
+                log.info("send data is: {} ", message);
+                send(message);
             }
         }
     }
 
     public static String receive() throws Exception {
         log.info("Kafka start receiving.........");
-        return KafkaConsumerConnectionPool.getRecord();
+        return KafkaConsumerPool.getRecord();
     }
 
     public static void send(String message) throws Exception {
         log.info("Kafka send {}.........", message);
-        KafkaProducerConnectionCell producerCell = KafkaProducerConnectionPool.getInstancePool().getConnection();
-        KafkaProducer<String, String> producer = producerCell.getProducer();
+        KafkaProducerCell producerCell = KafkaProducerPool.getInstancePool().getConnection();
+        org.apache.kafka.clients.producer.KafkaProducer<String, String> producer = producerCell.getProducer();
         // send message
 
-        ProducerRecord<String, String> record = new ProducerRecord<>(KafkaConnectionPoolConfig.KAFKA_PRODUCER_TOPIC, message);
+        ProducerRecord<String, String> record = new ProducerRecord<>(producerCell.getProducerTopic(), message);
 
         try {
             producer.send(record, (recordMetadata, e) -> {
@@ -99,14 +97,18 @@ public class KafkaUtils {
         }
 
 
-        KafkaProducerConnectionPool.getInstancePool().releaseConnection(producerCell);
+        KafkaProducerPool.getInstancePool().releaseConnection(producerCell);
     }
+
+    private static AdminClient adminClient;
 
     public static void createNewTopic(String topic, int partition, short replica) {
         //        //create partition
-        Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:29092");
-        AdminClient adminClient = AdminClient.create(props);
+        if (adminClient == null){
+            Properties props = new Properties();
+            props.put("bootstrap.servers", "localhost:29092");
+            adminClient = AdminClient.create(props);
+        }
 
         NewTopic newTopic = new NewTopic(topic, partition, replica);
         adminClient.createTopics(Arrays.asList(newTopic));

@@ -1,10 +1,8 @@
 package vn.vnpay.receiver.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
-import vn.vnpay.receiver.connect.kafka.KafkaConnectionPoolConfig;
+import vn.vnpay.receiver.connect.kafka.KafkaPoolConfig;
 import vn.vnpay.receiver.model.ApiRequest;
-import vn.vnpay.receiver.runnable.PushToOracleCallable;
 import vn.vnpay.receiver.runnable.PushToRedisCallable;
 
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class DataUtils {
         //         concurrency for redis and oracle
         //         redis -> oracle
         for (Future f : futureList) {
-            f.get(KafkaConnectionPoolConfig.REQUEST_TIME_OUT,TimeUnit.MILLISECONDS);
+            f.get(KafkaPoolConfig.REQUEST_TIME_OUT,TimeUnit.MILLISECONDS);
         }
 //
 //         concurrency for redis and oracle
@@ -64,9 +62,9 @@ public class DataUtils {
 //        }
         //        return apiResponse;
 
-
-        //         concurrency for redis and oracle
-        //         redis -> oracle
-
     }
+
+//    public static void processPayment(PaymentRequest paymentRequest){
+//
+//    }
 }
