@@ -15,10 +15,10 @@ public class KafkaProducerPool extends ObjectPool<KafkaProducerCell> {
     private static KafkaProducerPool instancePool;
     protected Properties producerProps;
     protected String producerTopic;
+    protected Thread thread;
     protected long startTime;
     protected long endTime;
     public synchronized static KafkaProducerPool getInstancePool() {
-        log.info("Create Kafka Producer Connection pool........................ ");
         if (instancePool == null) {
             instancePool = new KafkaProducerPool();
         }
@@ -26,7 +26,9 @@ public class KafkaProducerPool extends ObjectPool<KafkaProducerCell> {
     }
 
     public KafkaProducerPool() {
+        log.info("Create Kafka Producer Connection pool........................ ");
         setExpirationTime(KafkaPoolConfig.TIME_OUT);
+        setInitSize(KafkaPoolConfig.INIT_PRODUCER_POOL_SIZE);
         producerTopic = KafkaPoolConfig.KAFKA_PRODUCER_TOPIC;
         producerProps = new Properties();
         producerProps.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaPoolConfig.KAFKA_SERVER);

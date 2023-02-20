@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -13,6 +12,7 @@ public abstract class ObjectPool<T> {
     private final Hashtable<T, Long> locked;
     private final Hashtable<T, Long> unlocked;
     private long expirationTime;
+    private int initSize;
     public ObjectPool() {
         expirationTime = 30000; // 30 seconds
         locked = new Hashtable<T, Long>();
@@ -23,6 +23,21 @@ public abstract class ObjectPool<T> {
         locked.forEach((t, aLong) -> expire(t));
         unlocked.clear();
         locked.clear();
+    }
+    public synchronized void init(){
+        long now = System.currentTimeMillis();
+        int count = 0;
+        while (count < initSize){
+            unlocked.put(create(), now);
+            count++;
+        }
+    }
+    public synchronized int getIdle(){
+        return unlocked.size();
+    }
+
+    public synchronized int getActive(){
+        return locked.size();
     }
     protected abstract T create();
 
@@ -59,6 +74,7 @@ public abstract class ObjectPool<T> {
         // no objects available, create a new one
         t = create();
         locked.put(t, now);
+        ;
         return (t);
     }
 

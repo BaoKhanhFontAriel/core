@@ -1,6 +1,7 @@
 package vn.vnpay.receiver.connect.kafka;
 
 import lombok.Getter;
+import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -15,14 +16,15 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Getter
-public class KafkaConsumerPool extends ObjectPool<KafkaConsumerCell>{
+public class KafkaConsumerPool extends ObjectPool<KafkaConsumerCell> {
     private static final Logger log = LoggerFactory.getLogger(KafkaConsumerPool.class);
     private static KafkaConsumerPool instancePool;
     protected Properties consumerProps;
     protected String consumerTopic;
-    private final int maxPoolSize;
-    private static AtomicReference<LinkedBlockingQueue<String>> recordQueue = new AtomicReference<>(new LinkedBlockingQueue<>());
-    private int index;
+    protected Thread thread;
+    protected long startTime;
+    protected long endTime;
+    private static final AtomicReference<LinkedBlockingQueue<String>> recordQueue = new AtomicReference<>(new LinkedBlockingQueue<>());
 
     public synchronized static KafkaConsumerPool getInstancePool() {
         if (instancePool == null) {
@@ -32,9 +34,8 @@ public class KafkaConsumerPool extends ObjectPool<KafkaConsumerCell>{
     }
 
     public KafkaConsumerPool() {
-        setExpirationTime(KafkaPoolConfig.TIME_OUT);
-        index = 0;
-        maxPoolSize = KafkaPoolConfig.MAX_CONSUMER_POOL_SIZE;
+        setExpirationTime(Integer.MAX_VALUE);
+        setInitSize(KafkaPoolConfig.INIT_CONSUMER_POOL_SIZE);
         consumerTopic = KafkaPoolConfig.KAFKA_CONSUMER_TOPIC;
         consumerProps = new Properties();
         consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaPoolConfig.KAFKA_SERVER);
@@ -46,8 +47,7 @@ public class KafkaConsumerPool extends ObjectPool<KafkaConsumerCell>{
 
     public void startPoolPolling() {
         log.info("Start Kafka consumer pool polling.........");
-        int count = 0;
-        while (count <= instancePool.maxPoolSize) {
+        while (getIdle() > 0) {
             KafkaConsumerCell consumerCell = getConnection();
             log.info("consumer {} start polling", consumerCell.getConsumer().groupMetadata().groupInstanceId());
             ExecutorSingleton.submit((Runnable) () ->
@@ -60,17 +60,24 @@ public class KafkaConsumerPool extends ObjectPool<KafkaConsumerCell>{
                                 consumerCell.getConsumer().groupMetadata().groupInstanceId(),
                                 r.partition(),
                                 r.offset(), r.key(), r.value());
-                        recordQueue.get().add(r.value());
+
+                            recordQueue.get().add(r.value());
+                    }
+
+                    try {
+                        consumerCell.getConsumer().commitSync();
+                    } catch (CommitFailedException e) {
+                        log.error("commit failed", e);
                     }
                 }//
             });
-            count++;
         }
     }
 
-    public KafkaConsumerCell getConnection(){
+    public KafkaConsumerCell getConnection() {
         return super.checkOut();
     }
+
 
     public static String getRecord() throws Exception {
         log.info("Get Kafka Consumer pool record.......");
@@ -79,9 +86,7 @@ public class KafkaConsumerPool extends ObjectPool<KafkaConsumerCell>{
 
     @Override
     protected KafkaConsumerCell create() {
-        int temp = index;
-        index++;
-        return new KafkaConsumerCell(consumerProps, consumerTopic, temp);
+        return new KafkaConsumerCell(consumerProps, consumerTopic);
     }
 
     @Override

@@ -13,23 +13,17 @@ import vn.vnpay.receiver.utils.KafkaUtils;
 
 @Slf4j
 public class MainService {
-    private static final RabbitConnectionPool rabbitConnectionPool = RabbitConnectionPool.getInstancePool();
-    private static final OracleConnectionPool oracleConnectionPool = OracleConnectionPool.getInstancePool();
-//    private static final KafkaConnectionPool kafkaConnectionPool = KafkaConnectionPool.getInstancePool();
-
-    private static final ExecutorSingleton executorSingleton = new ExecutorSingleton();
-    private static final GsonSingleton gsonSingleton = new GsonSingleton();
-
     public static void main(String[] args) throws Exception {
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
         ExecutorSingleton.getInstance();
 
-//        oracleConnectionPool.start();
+        OracleConnectionPool.getInstancePool().start();
 //        rabbitConnectionPool.start();
 
         RedisConnectionPool.getInstancePool().start();
         KafkaUtils.createNewTopic(KafkaPoolConfig.KAFKA_PRODUCER_TOPIC, 10, (short) 1);
-        KafkaProducerPool.getInstancePool();
+        KafkaProducerPool.getInstancePool().init();
+        KafkaConsumerPool.getInstancePool().init();
         KafkaConsumerPool.getInstancePool().startPoolPolling();
 
 //        RabbitConnectionCell rabbitConnectionCell = rabbitConnectionPool.getConnection();

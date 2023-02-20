@@ -28,21 +28,26 @@ public class KafkaUtils {
                 ApiResponse response = new ApiResponse("00", "success", apiRequest.getToken());
 
                 // oracle, redis
-                MDC.put("token", TokenUtils.generateNewToken());
-                try {
-                    DataUtils.processData(apiRequest);
-                } catch (ExecutionException e) {
-                    log.error(e.getMessage());
-                    response = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
-                } catch (TimeoutException e) {
-                    log.error(e.getMessage());
-                    response = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
-                } catch (InterruptedException e) {
-                    log.error(e.getMessage());
-                    response = new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
-                } finally {
-                    MDC.remove("token");
-                }
+//                MDC.put("token", TokenUtils.generateNewToken());
+//                try {
+//                    DataUtils.processData(apiRequest);
+//                } catch (ExecutionException e) {
+//                    log.error(e.getMessage());
+//                    response = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
+//                } catch (TimeoutException e) {
+//                    log.error(e.getMessage());
+//                    response = new ApiResponse(ErrorCode.TIME_OUT_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
+//                } catch (InterruptedException e) {
+//                    log.error(e.getMessage());
+//                    response = new ApiResponse(ErrorCode.INTERRUPTED_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
+//                }
+//                catch (Exception e) {
+//                    log.error(e.getMessage());
+//                    response = new ApiResponse(ErrorCode.EXECUTION_ERROR, "fail:" + e.getMessage(), apiRequest.getToken());
+//                }
+//                finally {
+//                    MDC.remove("token");
+//                }
 
                 // send message
                 String message = GsonSingleton.toJson(response);

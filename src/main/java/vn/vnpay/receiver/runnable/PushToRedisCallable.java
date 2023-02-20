@@ -45,18 +45,6 @@ public class PushToRedisCallable implements Callable<ApiResponse> {
     public ApiResponse call() throws RedisDataProcessingException, InterruptedException {
         log.info("push to redis");
         ApiResponse apiResponse = null;
-//
-//        try {
-//            pushToRedis();
-//        } catch (JedisException | InterruptedException e) {
-//            log.error("fail to push to redis: ", e);
-//             apiResponse = new ApiResponse(ErrorCode.ORACLE_ERROR, "fail: " + e.getMessage(), apiRequest.getToken());
-//        }
-//        finally {
-//            redisConnectionPool.releaseConnection(redisConnectionCell);
-//        }
-
-
         try {
             pushToRedis();
         } catch (JedisException | InterruptedException e) {
